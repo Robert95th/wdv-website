@@ -15,4 +15,14 @@ class EstateMatterController extends Controller
 
         return view('meetings', compact('matters'));
     }
+
+    public function archived()
+    {
+        // Fetch only archived items, ordered by expiry date
+        $matters = \App\Models\EstateMatter::where('view_status', false)
+            ->orderBy('expiry_date', 'asc')
+            ->get();
+
+        return view('archived', compact('matters'));
+    }
 }

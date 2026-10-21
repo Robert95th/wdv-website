@@ -17,6 +17,7 @@ Route::get('/services', function () {
 })->name('services');
 
 Route::get('/meetings', [EstateMatterController::class, 'index'])->name('meetings.index');
+Route::get('/archived', [EstateMatterController::class, 'archived'])->name('matters.archived');
 
 Route::get('/dashboard', function () {
     return view('dashboard');

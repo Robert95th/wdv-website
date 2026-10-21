@@ -102,7 +102,10 @@
 
                         <li><a href="/services" class="hover:text-white transition">Services</a></li>
                         <li><a href="/meetings" class="{{ request()->is('meetings.index') ? 'text-white' : 'hover:text-white' }} transition">Estate Meetings</a></li>
+                        <li><a href="/archived" class="{{ request()->is('matters.archived') ? 'text-white' : 'hover:text-white' }} transition">Archived Meetings</a></li>
                         <li><a href="/properties" class="{{ request()->is('properties') ? 'text-white' : 'hover:text-white' }} transition">Properties for Sale</a></li>
+                       
+                       
                         <!-- Admin / Login Button -->
                         <!-- @if (Route::has('login'))
                             <li>

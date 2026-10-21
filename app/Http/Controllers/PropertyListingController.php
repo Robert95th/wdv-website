@@ -23,4 +23,5 @@ public function index()
 
     return view('properties', compact('listings', 'categories', 'counts'));
 }
+
 }

@@ -19,13 +19,33 @@
 
     <style>
         /* Custom Colors */
-        .bg-navy { background-color: #0a192f; }
-        .text-navy { color: #0a192f; }
-        .text-gold { color: #c5b48c; }
-        .bg-cream { background-color: #f4efd9; }
-        .border-gold { border-color: #c5b48c; }
-        .font-serif-custom { font-family: 'Playfair Display', serif; }
-        .font-sans-custom { font-family: 'Inter', sans-serif; }
+        .bg-navy {
+            background-color: #0a192f;
+        }
+
+        .text-navy {
+            color: #0a192f;
+        }
+
+        .text-gold {
+            color: #c5b48c;
+        }
+
+        .bg-cream {
+            background-color: #f4efd9;
+        }
+
+        .border-gold {
+            border-color: #c5b48c;
+        }
+
+        .font-serif-custom {
+            font-family: 'Playfair Display', serif;
+        }
+
+        .font-sans-custom {
+            font-family: 'Inter', sans-serif;
+        }
 
         /* Body Grid for Sticky Footer */
         body {
@@ -76,13 +96,13 @@
                     <ul class="flex flex-row md:flex-col gap-6 md:gap-3 text-sm text-gold font-medium">
                         <!-- Active state logic for Home -->
                         <li><a href="/" class="{{ request()->is('/') ? 'text-white' : 'hover:text-white' }} transition">Home</a></li>
-                        
+
                         <!-- Active state logic for About -->
                         <li><a href="/about" class="{{ request()->is('about') ? 'text-white' : 'hover:text-white' }} transition">About</a></li>
-                        
-                        <li><a href="/services" class="hover:text-white transition">Services</a></li>
-                        <li><a href="/contact" class="hover:text-white transition">Contact</a></li>
 
+                        <li><a href="/services" class="hover:text-white transition">Services</a></li>
+                        <li><a href="/meetings" class="{{ request()->is('meetings.index') ? 'text-white' : 'hover:text-white' }} transition">Estate Meetings</a></li>
+                        <li><a href="/properties" class="{{ request()->is('properties') ? 'text-white' : 'hover:text-white' }} transition">Properties for Sale</a></li>
                         <!-- Admin / Login Button -->
                         <!-- @if (Route::has('login'))
                             <li>
@@ -112,13 +132,19 @@
 
                 <!-- Column 1: Menu -->
                 <div class="flex flex-col md:border-r border-gray-700 md:pr-8">
-                    <ul class="space-y-4 text-gray-300 font-medium">
-                        <li><a href="/about" class="hover:text-gold transition">About Us</a></li>
-                        <li><a href="/#services" class="hover:text-gold transition">Services</a></li>
-                        <li><a href="#" class="hover:text-gold transition">Our Team</a></li>
-                        <li><a href="#" class="hover:text-gold transition">Contact</a></li>
-                    </ul>
-                    <!-- Social Icons -->
+                    <div class="flex flex-wrap justify-between items-center mb-6">
+
+
+                        <ul class="space-y-4 text-gray-300 font-medium">
+                            <li><a href="/about" class="hover:text-gold transition">About Us</a></li>
+                            <li><a href="/#services" class="hover:text-gold transition">Services</a></li>
+                            <li><a href="#" class="hover:text-gold transition">Our Team</a></li>
+                            <li><a href="#" class="hover:text-gold transition">Contact</a></li>
+                        </ul>
+
+
+                    </div>
+                    <!-- Social Icons
                     <div class="flex gap-4 mt-8">
                         <a href="#" class="w-10 h-10 rounded-full border border-gray-500 flex items-center justify-center hover:border-gold hover:text-gold transition">
                             <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 24 24">
@@ -130,7 +156,7 @@
                                 <path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zM12 0C8.741 0 8.333.014 7.053.072 2.695.272.273 2.69.073 7.052.014 8.333 0 8.741 0 12c0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98C8.333 23.986 8.741 24 12 24c3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98C15.668.014 15.259 0 12 0zm0 5.838a6.162 6.162 0 100 12.324 6.162 6.162 0 000-12.324zM12 16a4 4 0 110-8 4 4 0 010 8zm6.406-11.845a1.44 1.44 0 100 2.881 1.44 1.44 0 000-2.881z" />
                             </svg>
                         </a>
-                    </div>
+                    </div> -->
                 </div>
 
                 <!-- Column 2: Newsletter Form -->

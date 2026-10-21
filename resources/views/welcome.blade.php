@@ -18,10 +18,10 @@
                 </p>
 
                 <div class="flex flex-col sm:flex-row gap-4">
-                    <a href="#services" class="inline-block bg-navy text-white text-center font-medium px-8 py-3.5 hover:bg-gray-800 transition duration-300">
+                    <a href="services" class="inline-block bg-navy text-white text-center font-medium px-8 py-3.5 hover:bg-gray-800 transition duration-300">
                         View our services
                     </a>
-                    <a href="#" class="inline-block bg-white text-navy border border-navy text-center font-medium px-8 py-3.5 shadow-sm hover:shadow-md hover:bg-navy hover:text-white transition-all duration-300">
+                    <a href="about" class="inline-block bg-white text-navy border border-navy text-center font-medium px-8 py-3.5 shadow-sm hover:shadow-md hover:bg-navy hover:text-black transition-all duration-300">
                         About the practice
                     </a>
                 </div>

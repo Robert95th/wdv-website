@@ -1,41 +1,41 @@
 @extends('layouts.app')
 
-@section('title', 'Services - W.D.V. Schickerling')
-
+@section('title', 'Services | W.D.V. Schickerling')
 
 @section('content')
-<section class="relative overflow-hidden h-[600px] md:h-[700px] lg:h-[500px]">
-    <!-- 1. Blurry Background Layer -->
-    <div class="absolute inset-0 bg-cover bg-center blur-md scale-110"
-        style="background-image: url('{{ asset('images/about-bg1.jpg') }}');">
+<!-- Hero Section -->
+<section class="relative overflow-hidden bg-navy flex items-center justify-center min-h-[400px] md:min-h-[500px]">
+    <!-- Background Image with darker navy overlay for contrast -->
+    <div class="absolute inset-0">
+        <img src="{{ asset('images/about-bg1.jpg') }}" alt="Background" class="w-full h-full object-cover opacity-30 blur-md scale-110">
+        <div class="absolute inset-0 bg-gradient-to-r from-navy via-navy/80 to-transparent"></div>
     </div>
 
-    <div class="absolute inset-0 bg-navy/40"></div>
-    <div class="relative z-10 max-w-2xl mx-auto px-8 py-12  flex flex-col justify-center">
-        <div class="relative flex flex-col lg:flex-row items-center bg-cream overflow-hidden shadow-lg border border-gray-100 ">
-         
-                <h2 class="font-serif-custom text-4xl md:text-5xl text-navy leading-tight mb-6 p-3">
-                    About the Practice
-                </h2>
-                <p class="text-gray-600 text-base md:text-lg mb-8 leading-relaxed">
-                    The practice is built on discretion, careful record keeping, and direct, personal involvement in every estate under its administration.
-                </p>
-    
-           
+    <!-- Content Container -->
+    <div class="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16 w-full">
+        <div class="bg-cream max-w-3xl p-8 md:p-12 shadow-2xl border-t-4 border-gold">
+            <h2 class="font-serif-custom text-4xl md:text-5xl text-navy leading-tight mb-6">
+                Services & what to bring to your first consultation
+            </h2>
+            <p class="text-gray-700 text-lg md:text-xl leading-relaxed">
+           An outline of each service we offer. The documents listed are a general guide please contact our office beforehand to confirm exactly what your matter requires.  </p>
         </div>
     </div>
 </section>
-<section id="services" class="py-16 md:py-24 bg-white w-full border-y" x-data="{ openModal: false, selectedService: '' }">
-    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center p-5">
 
-        <div class="">
-
-            <h2 class="font-serif-custom text-3xl md:text-4xl text-navy mb-4">Our Expertise</h2>
-            <p class="text-gray-600 max-w-2xl mx-auto mb-12 text-lg">
-                Every matter is handled with the discretion, record keeping and legal precision that insolvency and estate work demands.
-            </p>
-        </div>
-
+<section id="services" class="py-16 md:py-24 bg-white w-full border-y" x-data="{ 
+    openModal: false, 
+    selectedService: '', 
+    serviceDescription: '',
+    requirements: [],
+    openService(service, description, reqs) {
+        this.selectedService = service;
+        this.serviceDescription = description;
+        this.requirements = reqs;
+        this.openModal = true;
+    }
+}">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center ">
 
         <div class="grid grid-cols-1 md:grid-cols-3 gap-6 text-left">
 
@@ -52,7 +52,11 @@
                         Administration of insolvent estates in Liquidations and Sequestrations.
                     </p>
                 </div>
-                <button @click="openModal = true; selectedService = 'Insolvency Practitioner'" class="w-full bg-navy text-white text-center font-medium px-6 py-2.5 hover:bg-gray-800 transition duration-300">
+                <button @click="openService(
+                    'Insolvency Practitioner', 
+                    'Acting as liquidator or trustee for insolvent individuals, insolvent deceased estates, partnerships, close corporations, company estates, and other legal entities from initial appointment, through the creditors\' process, to final liquidation and distribution.', 
+                    ['ID document / company or CC registration documents', 'Full list of assets and liabilities', 'Recent bank statements (3–6 months)', 'List of creditors with contact details', 'Any summons, letters of demand or court orders received', 'Title deeds or ownership documents for major assets', 'Existing loan and credit agreements']
+                )" class="w-full bg-navy text-white text-center font-medium px-6 py-2.5 hover:bg-gray-800 transition duration-300">
                     Request Service
                 </button>
             </div>
@@ -70,7 +74,11 @@
                         Deceased estates.
                     </p>
                 </div>
-                <button @click="openModal = true; selectedService = 'Estate Practitioner'" class="w-full bg-navy text-white text-center font-medium px-6 py-2.5 hover:bg-gray-800 transition duration-300">
+                <button @click="openService(
+                    'Estate Practitioner', 
+                    'Reporting and administering deceased estates to the Master of the High Court asset collection, creditor notices, tax clearance, and distribution to heirs in line with the will or intestate succession.', 
+                    ['Death certificate', 'Original will, if one exists', 'ID documents of the deceased and heirs', 'Marriage certificate / antenuptial contract', 'List of assets and liabilities, title deeds, vehicle papers', 'Life policy and bank statement details']
+                )" class="w-full bg-navy text-white text-center font-medium px-6 py-2.5 hover:bg-gray-800 transition duration-300">
                     Request Service
                 </button>
             </div>
@@ -88,7 +96,11 @@
                         Appointment as Receiver in partnerships, universal partnerships & divorce matters.
                     </p>
                 </div>
-                <button @click="openModal = true; selectedService = 'Receiver'" class="w-full bg-navy text-white text-center font-medium px-6 py-2.5 hover:bg-gray-800 transition duration-300">
+                <button @click="openService(
+                    'Receiver', 
+                    'Acting as receiver in the winding-up of business partnerships and universal partnerships, and in the division of assets arising from divorce proceedings.', 
+                    ['Partnership agreement, or evidence of a universal partnership', 'Divorce order, decree, or summons', 'Schedule of assets and liabilities', 'Recent bank statements', 'Valuations of major assets, where available', 'ID documents of all parties']
+                )" class="w-full bg-navy text-white text-center font-medium px-6 py-2.5 hover:bg-gray-800 transition duration-300">
                     Request Service
                 </button>
             </div>
@@ -106,7 +118,11 @@
                         Voluntary Members / Creditors Winding-up by special resolution.
                     </p>
                 </div>
-                <button @click="openModal = true; selectedService = 'Special Resolution'" class="w-full bg-navy text-white text-center font-medium px-6 py-2.5 hover:bg-gray-800 transition duration-300">
+                <button @click="openService(
+                    'Special Resolution', 
+                    'Assisting companies and close corporations to wind up voluntarily by special resolution, whether as a members\' or a creditors\' voluntary winding-up.', 
+                    ['Certified copy of the special resolution', 'Company / CC registration documents', 'Latest financial statements', 'List of assets and liabilities', 'Creditor list and shareholder / member register']
+                )" class="w-full bg-navy text-white text-center font-medium px-6 py-2.5 hover:bg-gray-800 transition duration-300">
                     Request Service
                 </button>
             </div>
@@ -124,7 +140,11 @@
                         Independent administration & restructuring of estates.
                     </p>
                 </div>
-                <button @click="openModal = true; selectedService = 'Administration & Restructuring'" class="w-full bg-navy text-white text-center font-medium px-6 py-2.5 hover:bg-gray-800 transition duration-300">
+                <button @click="openService(
+                    'Administration & Restructuring', 
+                    'Independent administration of estates in financial difficulty, structuring repayment and restructuring arrangements as an alternative to formal liquidation.', 
+                    ['Current financial statements', 'List of assets and liabilities', 'Existing loan and credit agreements', 'Proof of income', 'Correspondence received from creditors']
+                )" class="w-full bg-navy text-white text-center font-medium px-6 py-2.5 hover:bg-gray-800 transition duration-300">
                     Request Service
                 </button>
             </div>
@@ -142,7 +162,11 @@
                         Appointment and ongoing administration of curatorships.
                     </p>
                 </div>
-                <button @click="openModal = true; selectedService = 'Curatorships'" class="w-full bg-navy text-white text-center font-medium px-6 py-2.5 hover:bg-gray-800 transition duration-300">
+                <button @click="openService(
+                    'Curatorships', 
+                    'Appointment and ongoing administration of curatorships for individuals unable to manage their own financial or personal affairs.', 
+                    ['Medical or psychiatric reports supporting incapacity', 'ID documents of the patient and proposed curator', 'Any existing court application documents', 'List of the patient\'s assets and liabilities', 'Family details and next of kin']
+                )" class="w-full bg-navy text-white text-center font-medium px-6 py-2.5 hover:bg-gray-800 transition duration-300">
                     Request Service
                 </button>
             </div>
@@ -160,59 +184,105 @@
                         Cross border insolvency advice & foreign liquidator’s agent.
                     </p>
                 </div>
-                <button @click="openModal = true; selectedService = 'Cross Border Insolvency'" class="w-full bg-navy text-white text-center font-medium px-6 py-2.5 hover:bg-gray-800 transition duration-300">
+                <button @click="openService(
+                    'Cross Border Insolvency', 
+                    'Cross border insolvency advice, and acting as a foreign liquidator\'s agent in Namibia where an insolvent estate or company has assets, creditors or interests in Namibia.', 
+                    ['Foreign court order or appointment of the liquidator or trustee', 'Certified proof of the foreign liquidator\'s identity and authority', 'Details of the insolvent estate or company and the foreign proceedings', 'Schedule of known assets and creditors in Namibia', 'Title deeds, registration papers or other proof of ownership of Namibian assets', 'Correspondence with creditors or authorities in Namibia']
+                )" class="w-full bg-navy text-white text-center font-medium px-6 py-2.5 hover:bg-gray-800 transition duration-300">
                     Request Service
                 </button>
             </div>
         </div>
-
-   
     </div>
 
     <!-- THE MODAL FORM -->
     <div x-show="openModal" style="display: none;" class="fixed inset-0 z-50 overflow-y-auto" aria-labelledby="modal-title" role="dialog" aria-modal="true">
         <!-- Background backdrop -->
-        <div x-show="openModal" x-transition:enter="ease-out duration-300" x-transition:enter-start="opacity-0" x-transition:enter-end="opacity-100" x-transition:leave="ease-in duration-200" x-transition:leave-start="opacity-100" x-transition:leave-end="opacity-0" class="fixed inset-0 bg-gray-500 bg-opacity-75 transition-opacity" @click="openModal = false"></div>
+        <div x-show="openModal" x-transition:enter="ease-out duration-700" x-transition:enter-start="opacity-0" x-transition:enter-end="opacity-100" x-transition:leave="ease-in duration-200" x-transition:leave-start="opacity-100" x-transition:leave-end="opacity-0" class="fixed inset-0 bg-gray-900 bg-opacity-75 transition-opacity" @click="openModal = false"></div>
 
         <div class="flex min-h-full items-end justify-center p-4 text-center sm:items-center sm:p-0">
-            <div x-show="openModal" x-transition:enter="ease-out duration-300" x-transition:enter-start="opacity-0 translate-y-4 sm:translate-y-0 sm:scale-95" x-transition:enter-end="opacity-100 translate-y-0 sm:scale-100" x-transition:leave="ease-in duration-200" x-transition:leave-start="opacity-100 translate-y-0 sm:scale-100" x-transition:leave-end="opacity-0 translate-y-4 sm:translate-y-0 sm:scale-95" class="relative transform overflow-hidden bg-white text-left shadow-xl transition-all sm:my-8 sm:w-full sm:max-w-lg">
-
-                <div class="bg-navy px-4 py-5 sm:px-6 border-b-2 border-gold">
-                    <h3 class="text-lg leading-6 font-serif-custom text-gold" id="modal-title">Request Service: <span x-text="selectedService"></span></h3>
+            <div x-show="openModal" x-transition:enter="ease-out duration-300" x-transition:enter-start="opacity-0 translate-y-4 sm:translate-y-0 sm:scale-95" x-transition:enter-end="opacity-100 translate-y-0 sm:scale-100" x-transition:leave="ease-in duration-200" x-transition:leave-start="opacity-100 translate-y-0 sm:scale-100" x-transition:leave-end="opacity-0 translate-y-4 sm:translate-y-0 sm:scale-95" class="relative transform overflow-hidden bg-white text-left shadow-xl transition-all sm:my-8 w-full max-w-4xl">
+                
+                <!-- Modal Header -->
+                <div class="bg-navy px-6 py-5 border-b-2 border-gold flex justify-between items-center">
+                    <div>
+                        <span class="inline-block bg-gold/20 text-gold border border-gold px-3 py-1 rounded-full text-xs font-semibold tracking-wide uppercase mb-2" x-text="selectedService"></span>
+                        <h3 class="text-2xl leading-6 font-serif-custom text-white" id="modal-title">Service Details & Request</h3>
+                    </div>
+                    <button @click="openModal = false" class="text-gray-400 hover:text-white transition">
+                        <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path></svg>
+                    </button>
                 </div>
 
-                <!-- Form -->
-                <form action="#" method="POST" class="px-4 py-5 sm:p-6 space-y-4">
-                    @csrf
-                    <!-- Hidden input to capture which service was clicked -->
-                    <input type="hidden" name="service" x-model="selectedService">
+                <div class="bg-[#fcfbf7] p-6 md:p-8">
+                    
+                    <!-- Top Section: Description & Requirements -->
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-8 mb-8">
+                        <!-- Left: Description -->
+                        <div>
+                            <h4 class="font-serif-custom text-2xl text-navy mb-4">What we do</h4>
+                            <p class="text-gray-700 leading-relaxed text-sm md:text-base" x-text="serviceDescription"></p>
+                        </div>
+                        
+                        <!-- Right: Requirements -->
+                      <div class="bg-navy border border-navy p-6 shadow-md text-left">
+                        <h4 class="font-serif-custom text-xl text-gold mb-4">Bring to your first consultation</h4>
+                        
+                        <ul class="list-disc list-outside ml-4 space-y-2 text-sm text-gray-200 marker:text-gold">
+                            <template x-for="req in requirements" :key="req">
+                                <li x-text="req" class="pl-1 leading-relaxed"></li>
+                            </template>
+                        </ul>
+                        
+                        <p class="text-xs text-gray-400 italic mt-5 border-t border-gray-700 pt-3">
+                            Indicative list — confirm specifics with our office.
+                        </p>
+                    </div>
+                    </div>
 
-                    <div>
-                        <label class="block text-sm font-medium text-gray-700">Full Name</label>
-                        <input type="text" name="name" required class="mt-1 block w-full border-gray-300 shadow-sm focus:border-navy focus:ring-navy sm:text-sm p-2 border">
-                    </div>
-                    <div>
-                        <label class="block text-sm font-medium text-gray-700">Email Address</label>
-                        <input type="email" name="email" required class="mt-1 block w-full border-gray-300 shadow-sm focus:border-navy focus:ring-navy sm:text-sm p-2 border">
-                    </div>
-                    <div>
-                        <label class="block text-sm font-medium text-gray-700">Phone Number</label>
-                        <input type="tel" name="phone" required class="mt-1 block w-full border-gray-300 shadow-sm focus:border-navy focus:ring-navy sm:text-sm p-2 border">
-                    </div>
-                    <div>
-                        <label class="block text-sm font-medium text-gray-700">Brief description of your matter</label>
-                        <textarea name="message" rows="3" required class="mt-1 block w-full border-gray-300 shadow-sm focus:border-navy focus:ring-navy sm:text-sm p-2 border"></textarea>
+                    <!-- Bottom Section: The Form -->
+                    <div class="border-t border-gray-300 pt-6">
+                        <h4 class="font-serif-custom text-xl text-navy mb-4">Request this service</h4>
+                        <form action="#" method="POST" class="space-y-4">
+                            @csrf
+                            <input type="hidden" name="service" x-model="selectedService">
+
+                            <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
+                                <div>
+                                    <label class="block text-sm font-medium text-gray-700 mb-1">Full Name</label>
+                                    <input type="text" name="name" required class="block w-full border-gray-300 shadow-sm focus:border-navy focus:ring-navy sm:text-sm p-2.5 border bg-white">
+                                </div>
+                                <div>
+                                    <label class="block text-sm font-medium text-gray-700 mb-1">Email Address</label>
+                                    <input type="email" name="email" required class="block w-full border-gray-300 shadow-sm focus:border-navy focus:ring-navy sm:text-sm p-2.5 border bg-white">
+                                </div>
+                                <div>
+                                    <label class="block text-sm font-medium text-gray-700 mb-1">Phone Number</label>
+                                    <input type="tel" name="phone" required class="block w-full border-gray-300 shadow-sm focus:border-navy focus:ring-navy sm:text-sm p-2.5 border bg-white">
+                                </div>
+                                <div>
+                                    <label class="block text-sm font-medium text-gray-700 mb-1">Date and Time</label>
+                                    <input type="datetime-local" name="datetime" required class="block w-full border-gray-300 shadow-sm focus:border-navy focus:ring-navy sm:text-sm p-2.5 border bg-white">
+                                </div>
+                            </div>
+                            
+                            <!-- <div>
+                                <label class="block text-sm font-medium text-gray-700 mb-1">Brief description of your matter</label>
+                                <textarea name="message" rows="2" required class="block w-full border-gray-300 shadow-sm focus:border-navy focus:ring-navy sm:text-sm p-2.5 border bg-white"></textarea>
+                            </div> -->
+
+                            <div class="flex flex-col sm:flex-row justify-end gap-3 pt-4">
+                                <button type="button" @click="openModal = false" class="inline-flex justify-center bg-white text-navy border border-navy px-6 py-2.5 text-sm font-semibold shadow-sm hover:bg-gray-50 transition">
+                                    Cancel
+                                </button>
+                                <button type="submit" class="inline-flex justify-center bg-navy text-white px-6 py-2.5 text-sm font-semibold shadow-sm hover:bg-gray-800 transition">
+                                    Submit Request
+                                </button>
+                            </div>
+                        </form>
                     </div>
 
-                    <div class="bg-cream p-4 text-sm text-gray-700 border border-gold/30">
-                        <strong>What to bring:</strong> After submitting, we will contact you to arrange a consultation. Please bring your ID, full list of assets/liabilities, and relevant court documents or financial statements.
-                    </div>
-
-                    <div class="mt-5 sm:mt-6 sm:grid sm:grid-flow-row-dense sm:grid-cols-2 sm:gap-3">
-                        <button type="submit" class="inline-flex w-full justify-center bg-navy px-3 py-2 text-sm font-semibold text-white shadow-sm hover:bg-gray-800 sm:col-start-2">Submit Request</button>
-                        <button type="button" @click="openModal = false" class="mt-3 inline-flex w-full justify-center bg-white px-3 py-2 text-sm font-semibold text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 hover:bg-gray-50 sm:col-start-1 sm:mt-0">Cancel</button>
-                    </div>
-                </form>
+                </div>
             </div>
         </div>
     </div>

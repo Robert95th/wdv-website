@@ -73,52 +73,62 @@
 <body class="font-sans-custom antialiased text-gray-800 bg-white">
 
     <!-- Header / Navigation -->
-    <header class="bg-navy text-white border-b-2 border-gold">
+    <!-- Header / Navigation -->
+    <header class="bg-navy text-white border-b-2 border-gold relative z-50" x-data="{ mobileMenuOpen: false }">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div class="flex flex-col md:flex-row justify-between items-center py-6 md:py-8 gap-6">
-
-                <!-- Logo & Brand -->
-                <a href="/" class="flex flex-col md:flex-row items-center gap-6 text-center md:text-left group">
-                    <img src="{{ asset('images/logo.png') }}" alt="W.D.V. Schickerling Logo" class="w-20 h-20 md:w-24 md:h-24 rounded-full border-2 border-gold bg-white object-cover shrink-0 group-hover:opacity-90 transition">
-
+            <div class="flex justify-between items-center py-4 md:py-8">
+                
+                <!-- Logo & Brand (Flex row on mobile too, to save space) -->
+                <a href="/" class="flex flex-row items-center gap-4 text-left group">
+                    <img src="{{ asset('images/logo.png') }}" alt="W.D.V. Schickerling Logo" class="w-14 h-14 md:w-24 md:h-24 rounded-full border-2 border-gold bg-white object-cover shrink-0 group-hover:opacity-90 transition">
                     <div>
-                        <h1 class="font-serif-custom text-3xl md:text-4xl text-gold tracking-widest leading-none">
+                        <h1 class="font-serif-custom text-xl md:text-4xl text-gold tracking-widest leading-none">
                             W.D.V.<br class="hidden md:block"> SCHICKERLING
                         </h1>
-                        <p class="text-gold text-[10px] md:text-xs tracking-[0.3em] uppercase mt-2 font-medium">
+                        <p class="text-gold text-[8px] md:text-xs tracking-[0.2em] uppercase mt-1 md:mt-2 font-medium">
                             Insolvency & Estate Practitioners
                         </p>
                     </div>
                 </a>
 
-                <!-- Nav Links -->
-                <nav class="md:border-l md:border-gray-700 md:pl-8">
-                    <ul class="flex flex-row md:flex-col gap-6 md:gap-3 text-sm text-gold font-medium">
-                        <!-- Active state logic for Home -->
+                <!-- Desktop Navigation (Hidden on Mobile) -->
+                <nav class="hidden md:block border-l border-gray-700 pl-8">
+                    <ul class="flex flex-col gap-3 text-sm text-gold font-medium">
                         <li><a href="/" class="{{ request()->is('/') ? 'text-white' : 'hover:text-white' }} transition">Home</a></li>
-
-                        <!-- Active state logic for About -->
                         <li><a href="/about" class="{{ request()->is('about') ? 'text-white' : 'hover:text-white' }} transition">About</a></li>
-
-                        <li><a href="/services" class="hover:text-white transition">Services</a></li>
-                        <li><a href="/meetings" class="{{ request()->is('meetings.index') ? 'text-white' : 'hover:text-white' }} transition">Estate Meetings</a></li>
-                        <li><a href="/archived" class="{{ request()->is('matters.archived') ? 'text-white' : 'hover:text-white' }} transition">Archived Meetings</a></li>
-                        <li><a href="/properties" class="{{ request()->is('properties') ? 'text-white' : 'hover:text-white' }} transition">Properties for Sale</a></li>
-                       
-                       
-                        <!-- Admin / Login Button -->
-                        <!-- @if (Route::has('login'))
-                            <li>
-                                @auth
-                                    <a href="{{ url('/dashboard') }}" class="text-white bg-gray-800 px-3 py-1 rounded hover:bg-gray-700 transition">Admin</a>
-                                @else
-                                    <a href="{{ route('login') }}" class="text-white bg-gray-800 px-3 py-1 rounded hover:bg-gray-700 transition">Login</a>
-                                @endauth
-                            </li>
-                        @endif -->
+                        <li><a href="/services" class="{{ request()->is('services') ? 'text-white' : 'hover:text-white' }} transition">Services</a></li>
+                        <li><a href="/meetings" class="{{ request()->is('meetings*') ? 'text-white' : 'hover:text-white' }} transition">Estate Meetings</a></li>
+                        <li><a href="/archived" class="{{ request()->is('archived*') ? 'text-white' : 'hover:text-white' }} transition">Archived Meetings</a></li>
+                        <li><a href="/properties" class="{{ request()->is('properties*') ? 'text-white' : 'hover:text-white' }} transition">Properties for Sale</a></li>
                     </ul>
                 </nav>
+
+                <!-- Mobile Hamburger Button (Visible only on Mobile) -->
+                <button @click="mobileMenuOpen = !mobileMenuOpen" class="md:hidden text-gold hover:text-white focus:outline-none p-2">
+                    <svg x-show="!mobileMenuOpen" class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path></svg>
+                    <svg x-show="mobileMenuOpen" style="display: none;" class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path></svg>
+                </button>
             </div>
+        </div>
+
+        <!-- Mobile Menu Dropdown -->
+        <div x-show="mobileMenuOpen" 
+             x-transition:enter="transition ease-out duration-200"
+             x-transition:enter-start="opacity-0 -translate-y-2"
+             x-transition:enter-end="opacity-100 translate-y-0"
+             x-transition:leave="transition ease-in duration-150"
+             x-transition:leave-start="opacity-100 translate-y-0"
+             x-transition:leave-end="opacity-0 -translate-y-2"
+             style="display: none;" 
+             class="md:hidden absolute top-full left-0 w-full bg-navy border-b-2 border-gold shadow-xl">
+            <ul class="px-4 pt-2 pb-6 space-y-1 text-sm font-medium text-gold">
+                <li><a href="/" class="block px-4 py-3 rounded hover:bg-gray-800 hover:text-white transition">Home</a></li>
+                <li><a href="/about" class="block px-4 py-3 rounded hover:bg-gray-800 hover:text-white transition">About</a></li>
+                <li><a href="/services" class="block px-4 py-3 rounded hover:bg-gray-800 hover:text-white transition">Services</a></li>
+                <li><a href="/meetings" class="block px-4 py-3 rounded hover:bg-gray-800 hover:text-white transition">Estate Meetings</a></li>
+                <li><a href="/archived" class="block px-4 py-3 rounded hover:bg-gray-800 hover:text-white transition">Archived Meetings</a></li>
+                <li><a href="/properties" class="block px-4 py-3 rounded hover:bg-gray-800 hover:text-white transition">Properties for Sale</a></li>
+            </ul>
         </div>
     </header>
 

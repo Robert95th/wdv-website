@@ -4,7 +4,7 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
-
+use Illuminate\Support\Facades\Storage;
 class PropertyListing extends Model
 {
     use HasFactory;
@@ -17,6 +17,7 @@ class PropertyListing extends Model
         'date_and_time',
         'venue',
         'image',
-        'view_status'
+        'view_status',
+        'document_path'
     ];
 }

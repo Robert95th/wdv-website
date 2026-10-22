@@ -48,14 +48,15 @@ Route::middleware('auth')->group(function () {
 });
 Route::middleware(['auth'])->prefix('admin')->name('admin.')->group(function () {
     // Explicitly define the routes to avoid the array naming conflict
-    Route::get('meetings', [MeetingController::class, 'index'])->name('meetings.index');
-    Route::get('meetings/create', [MeetingController::class, 'create'])->name('meetings.create');
-    Route::post('meetings', [MeetingController::class, 'store'])->name('meetings.store');
-    Route::get('meetings/{meeting}/edit', [MeetingController::class, 'edit'])->name('meetings.edit');
-    Route::put('meetings/{meeting}', [MeetingController::class, 'update'])->name('meetings.update');
-    Route::delete('meetings/{meeting}', [MeetingController::class, 'destroy'])->name('meetings.destroy');
 
-        // Properties
+
+    // Public routes
+    Route::get('/meetings', [MeetingController::class, 'index'])->name('meetings.index');
+    Route::post('/meetings', [MeetingController::class, 'store'])->name('meetings.store');
+    Route::put('/meetings/{meeting}', [MeetingController::class, 'update'])->name('meetings.update');
+    Route::delete('/meetings/{meeting}', [MeetingController::class, 'destroy'])->name('meetings.destroy');
+
+    // Properties
     Route::get('properties', [PropertyController::class, 'index'])->name('properties.index');
     Route::post('properties', [PropertyController::class, 'store'])->name('properties.store');
     Route::put('properties/{property}', [PropertyController::class, 'update'])->name('properties.update');

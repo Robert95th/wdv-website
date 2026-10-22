@@ -153,14 +153,18 @@
 
                 <!-- Column 1: Menu -->
                 <div class="flex flex-col md:border-r border-gray-700 md:pr-8">
+
+                    <h3 class="font-serif-custom text-3xl text-gold mb-2">Quick Links</h3>
                     <div class="flex flex-wrap justify-between items-center mb-6">
 
 
-                        <ul class="space-y-4 text-gray-300 font-medium">
-                            <li><a href="/about" class="hover:text-gold transition">About Us</a></li>
-                            <li><a href="/#services" class="hover:text-gold transition">Services</a></li>
-                            <li><a href="#" class="hover:text-gold transition">Our Team</a></li>
-                            <li><a href="#" class="hover:text-gold transition">Contact</a></li>
+                        <ul class="space-y-4 text-gray-300 font-medium p-3">
+                            <li><a href="/" class="{{ request()->is('/') ? 'text-white' : 'hover:text-white' }} transition">Home</a></li>
+                            <li><a href="/about" class="{{ request()->is('about') ? 'text-white' : 'hover:text-white' }} transition">About</a></li>
+                            <li><a href="/services" class="{{ request()->is('services') ? 'text-white' : 'hover:text-white' }} transition">Services</a></li>
+                            <li><a href="/meetings" class="{{ request()->is('meetings*') ? 'text-white' : 'hover:text-white' }} transition">Estate Meetings</a></li>
+                            <li><a href="/archived" class="{{ request()->is('archived*') ? 'text-white' : 'hover:text-white' }} transition">Archived Meetings</a></li>
+                            <li><a href="/properties" class="{{ request()->is('properties*') ? 'text-white' : 'hover:text-white' }} transition">Properties for Sale</a></li>
                         </ul>
 
 
@@ -181,45 +185,45 @@
                 </div>
 
                 <!-- Column 2: Newsletter Form -->
-<div class="text-center px-4">
-    <h3 class="font-serif-custom text-3xl text-gold mb-2">Get Updates</h3>
-    <p class="text-sm text-gray-400 italic mb-6">Subscribe to our newsletter to receive updates and special announcements.</p>
+                <div class="text-center px-4">
+                    <h3 class="font-serif-custom text-3xl text-gold mb-2">Get Updates</h3>
+                    <p class="text-sm text-gray-400 italic mb-6">Subscribe to our newsletter to receive updates and special announcements.</p>
 
-    <!-- Success / Error Messages -->
-    @if(session('success'))
-        <div class="bg-green-900/50 border border-green-500 text-green-200 px-4 py-2 rounded text-sm mb-4">
-            {{ session('success') }}
-        </div>
-    @endif
+                    <!-- Success / Error Messages -->
+                    @if(session('success'))
+                    <div class="bg-green-900/50 border border-green-500 text-green-200 px-4 py-2 rounded text-sm mb-4">
+                        {{ session('success') }}
+                    </div>
+                    @endif
 
-    <form action="{{ route('newsletter.subscribe') }}" method="POST" class="space-y-3">
-        @csrf
-        
-        <!-- Honeypot Field (Hidden from users) -->
-        <div class="hidden" aria-hidden="true">
-            <input type="text" name="website_url" tabindex="-1" autocomplete="off">
-        </div>
+                    <form action="{{ route('newsletter.subscribe') }}" method="POST" class="space-y-3">
+                        @csrf
 
-        <div>
-            <input type="email" name="email" value="{{ old('email') }}" placeholder="*Email" required class="w-full bg-transparent border border-gray-500 p-3 text-sm text-white placeholder-gray-400 focus:outline-none focus:border-gold transition">
-            @error('email')
-                <span class="text-red-400 text-xs text-left block mt-1">{{ $message }}</span>
-            @enderror
-        </div>
-        
-        <div class="flex flex-col sm:flex-row gap-3">
-            <div class="w-full">
-                <input type="text" name="first_name" value="{{ old('first_name') }}" placeholder="*First Name" required class="w-full bg-transparent border border-gray-500 p-3 text-sm text-white placeholder-gray-400 focus:outline-none focus:border-gold transition">
-                @error('first_name')
-                    <span class="text-red-400 text-xs text-left block mt-1">{{ $message }}</span>
-                @enderror
-            </div>
-            <button type="submit" class="bg-white text-navy font-bold text-sm px-6 py-3 hover:bg-gray-200 transition whitespace-nowrap h-[46px]">
-                SIGN UP
-            </button>
-        </div>
-    </form>
-</div>
+                        <!-- Honeypot Field (Hidden from users) -->
+                        <div class="hidden" aria-hidden="true">
+                            <input type="text" name="website_url" tabindex="-1" autocomplete="off">
+                        </div>
+
+                        <div>
+                            <input type="email" name="email" value="{{ old('email') }}" placeholder="*Email" required class="w-full bg-transparent border border-gray-500 p-3 text-sm text-white placeholder-gray-400 focus:outline-none focus:border-gold transition">
+                            @error('email')
+                            <span class="text-red-400 text-xs text-left block mt-1">{{ $message }}</span>
+                            @enderror
+                        </div>
+
+                        <div class="flex flex-col sm:flex-row gap-3">
+                            <div class="w-full">
+                                <input type="text" name="first_name" value="{{ old('first_name') }}" placeholder="*First Name" required class="w-full bg-transparent border border-gray-500 p-3 text-sm text-white placeholder-gray-400 focus:outline-none focus:border-gold transition">
+                                @error('first_name')
+                                <span class="text-red-400 text-xs text-left block mt-1">{{ $message }}</span>
+                                @enderror
+                            </div>
+                            <button type="submit" class="bg-white text-navy font-bold text-sm px-6 py-3 hover:bg-gray-200 transition whitespace-nowrap h-[46px]">
+                                SIGN UP
+                            </button>
+                        </div>
+                    </form>
+                </div>
 
                 <!-- Column 3: Contact Details -->
                 <div class="flex flex-col md:border-l border-gray-700 md:pl-8 text-center md:text-left">

@@ -7,7 +7,6 @@
     {{-- =========================================================
      PAGE HEADER
 ========================================================= --}}
-
     <section class="relative overflow-hidden min-h-[350px] md:min-h-[500px] :md:flex items-center grid grid-cols-1 ">
         <!-- 1. Blurry Background Layer -->
         <div class="absolute inset-0 bg-cover bg-center blur-md scale-110"
@@ -132,13 +131,12 @@
                 </div>
             </div>
 
-            {{-- Category filters (Horizontal Scroll on Mobile) --}}
+            {{-- Category filters --}}
             <div class="mb-6 md:mb-8">
                 <p class="text-[10px] md:text-xs font-bold uppercase tracking-wider text-gray-500 mb-2 md:mb-3">
                     Filter by category
                 </p>
 
-                <!-- Added -mx-4 px-4 on mobile to allow edge-to-edge scrolling -->
                 <div class="" role="group" aria-label="Filter listings by category">
                     
                     <button type="button" @click="activeFilter = 'All'" :aria-pressed="activeFilter === 'All'"
@@ -173,8 +171,11 @@
                         {{-- Image --}}
                         <div class="relative h-48 md:h-56 overflow-hidden bg-[#0a192f]">
                             <template x-if="listing.image">
-                                <img :src="listing.image" :alt="listing.title ? 'Image of ' + listing.title : 'Asset listing image'"
-                                    loading="lazy" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500">
+                                <!-- Handle both local storage paths and external URLs -->
+                                <img :src="listing.image.startsWith('http') ? listing.image : '/storage/' + listing.image" 
+                                     :alt="listing.title ? 'Image of ' + listing.title : 'Asset listing image'"
+                                     loading="lazy" 
+                                     class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500">
                             </template>
 
                             <template x-if="!listing.image">
@@ -252,17 +253,7 @@
                                 </template>
                             </div>
 
-                            {{-- Footer --}}
-                            {{-- <div class="mt-4 md:mt-5 pt-3 md:pt-4 border-t border-gray-100 flex items-center justify-between gap-3">
-                                <span class="text-[10px] md:text-xs text-gray-500">Asset listing</span>
-                                <span class="inline-flex items-center gap-1 md:gap-1.5 text-[10px] md:text-xs font-bold text-[#8b6a34]">
-                                    View details
-                                    <svg class="w-3 h-3 md:w-4 md:h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
-                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.8" d="M5 12h14m-6-6 6 6-6 6" />
-                                    </svg>
-                                </span>
-                            </div>
-                        </div> --}}
+                        </div>
                     </article>
                 </template>
 

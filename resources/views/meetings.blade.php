@@ -56,14 +56,14 @@
     }
 }">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        
+
         <!-- Header and Search Bar -->
         <div class="mb-8 flex flex-col md:flex-row md:items-end justify-between gap-4">
             <div>
                 <h3 class="text-3xl font-serif-custom text-navy mb-2">Upcoming Meetings</h3>
                 <p class="text-gray-700">Stay informed about the latest meetings and events related to estate matters.</p>
             </div>
-            
+
             <!-- Search Input -->
             <div class="relative w-full md:w-72">
                 <div class="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
@@ -71,92 +71,116 @@
                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"></path>
                     </svg>
                 </div>
-                <input 
-                    type="text" 
-                    x-on:input="updateSearch($event.target.value)" 
-                    placeholder="Search estates..." 
-                    class="block w-full pl-10 pr-3 py-2.5 border border-gray-300 rounded-sm leading-5 bg-white placeholder-gray-500 focus:outline-none focus:placeholder-gray-400 focus:border-[#b8935a] focus:ring-1 focus:ring-[#b8935a] sm:text-sm transition"
-                >
+                <input
+                    type="text"
+                    x-on:input="updateSearch($event.target.value)"
+                    placeholder="Search estates..."
+                    class="block w-full pl-10 pr-3 py-2.5 border border-gray-300 rounded-sm leading-5 bg-white placeholder-gray-500 focus:outline-none focus:placeholder-gray-400 focus:border-[#b8935a] focus:ring-1 focus:ring-[#b8935a] sm:text-sm transition">
             </div>
         </div>
 
         <!-- Table Wrapper for Mobile Scroll -->
-        <div class="overflow-x-auto">
-            <table class="w-full text-left border-collapse">
-                <thead>
-                    <!-- Bold header with gold underline -->
-                    <tr class="border-b-[3px] border-[#b8935a]">
-                        <th class="py-4 px-4 font-bold text-navy text-sm w-1/4">Estate / matter</th>
-                        <th class="py-4 px-4 font-bold text-navy text-sm w-[12%]">Reference</th>
-                        <th class="py-4 px-4 font-bold text-navy text-sm w-1/4">Status</th>
-                        <th class="py-4 px-4 font-bold text-navy text-sm w-1/4">Next action</th>
-                        <th class="py-4 px-4 font-bold text-navy text-sm w-1/4">Date & venue</th>
-                    </tr>
-                </thead>
-                
-                <tbody class="divide-y divide-gray-200">
-                    <!-- Alpine x-for loop using the paginated list -->
-                    <template x-for="matter in paginatedMatters" :key="matter.id">
-                        <tr class="hover:bg-gray-50 transition duration-150 ease-in-out">
-                            <td class="py-5 px-4 text-sm md:text-base text-gray-800 font-medium leading-relaxed" x-text="matter.estate_matter"></td>
-                            <td class="py-5 px-4 text-sm md:text-base text-gray-800" x-text="matter.reference"></td>
-                            <td class="py-5 px-4">
-                                <span class="inline-block bg-[#efe8d5] text-[#8c7a5b] px-3 py-1 rounded-full text-xs md:text-sm font-medium whitespace-nowrap" x-text="matter.status"></span>
-                            </td>
-                            <td class="py-5 px-4 text-sm md:text-base text-gray-800 leading-relaxed" x-text="matter.next_action"></td>
-                            <td class="py-5 px-4 text-sm md:text-base text-gray-800 leading-relaxed" x-text="matter.date_and_venue"></td>
-                        </tr>
-                    </template>
-                    
-                    <!-- Empty State (When Search has no results) -->
-                    <tr x-show="filteredMatters.length === 0">
-                        <td colspan="5" class="py-8 text-center text-gray-500 italic">
-                            No estates found matching "<span x-text="search" class="font-semibold text-navy"></span>".
-                        </td>
-                    </tr>
-                </tbody>
-            </table>
-        </div>
 
+
+
+        <div class="overflow-x-auto">
+            <div class="grid grid-cols-1 md:grid-cols-5 border-b-[3px] border-[#b8935a] mb-5 font-bold text-sm md:text-base text-gray-800">
+                <div class="">
+                    <span class="px-3 text-justify text-sm md:text-base text-gray-800 font-medium leading-relaxed">Estate / matter</span>
+                </div>
+                <div class="">
+                    <span class="px-3 text-justify text-sm md:text-base text-gray-800 font-medium leading-relaxed">Reference</span>
+                </div>
+                <div class="">
+                    <span class="px-3 text-justify text-sm md:text-base text-gray-800 font-medium leading-relaxed"> Status</span>
+                </div>
+                <div class="">
+                    <span class="px-3 text-justify text-sm md:text-base text-gray-800 font-medium leading-relaxed"> Next action</span>
+                </div>
+                <div class="">
+                    <span class="px-3 text-justify text-sm md:text-base text-gray-800 font-medium leading-relaxed">Date & venue</span>
+                </div>
+                <div class="">
+                    <span class="px-3 text-justify text-sm md:text-base text-gray-800 font-medium leading-relaxed"></span>
+                </div>
+            </div>
+            <template x-for="matter in paginatedMatters" :key="matter.id">
+                <div class="grid grid-cols-1 md:grid-cols-5 border-b border-gray-200 hover:bg-gray-50 transition duration-150 ease-in-out items-center">
+
+                    <!-- Estate / Matter -->
+                    <div class="px-3 py-4 flex flex-col md:block">
+                        <span class="md:hidden text-xs font-bold text-gray-400 uppercase tracking-wider mb-1">Estate / matter</span>
+                        <span class="text-sm md:text-base text-gray-800 font-medium leading-relaxed" x-text="matter.estate_matter"></span>
+                    </div>
+
+                    <!-- Reference -->
+                    <div class="px-3 py-4 flex justify-between md:block">
+                        <span class="md:hidden text-xs font-bold text-gray-400 uppercase tracking-wider">Reference</span>
+                        <span class="text-sm md:text-base text-gray-800" x-text="matter.reference"></span>
+                    </div>
+
+                    <!-- Status -->
+                    <div class="px-3 py-4 flex justify-between md:block">
+                        <span class="md:hidden text-xs font-bold text-gray-400 uppercase tracking-wider">Status</span>
+                        <span class="inline-block bg-[#efe8d5] text-[#8c7a5b] px-3 py-1 rounded-full text-xs md:text-sm font-medium whitespace-nowrap" x-text="matter.status"></span>
+                    </div>
+
+                    <!-- Next Action -->
+                    <div class="px-3 py-4 flex justify-between md:block gap-4">
+                        <span class="md:hidden text-xs font-bold text-gray-400 uppercase tracking-wider mt-0.5">Next action</span>
+                        <span class="text-sm md:text-base text-gray-800 leading-relaxed text-right md:text-left" x-text="matter.next_action"></span>
+                    </div>
+
+                    <!-- Date & Venue -->
+                    <div class="px-3 py-4 flex justify-between md:block gap-4">
+                        <span class="md:hidden text-xs font-bold text-gray-400 uppercase tracking-wider mt-0.5">Date & venue</span>
+                        <span class="text-sm md:text-base text-gray-800 leading-relaxed text-right md:text-left" x-text="matter.date_and_venue"></span>
+                    </div>
+
+                </div>
+            </template>
+
+        </div>
         <!-- Pagination Controls -->
         <div class="mt-6 flex flex-col sm:flex-row items-center justify-between gap-4" x-show="totalPages > 1">
             <p class="text-sm text-gray-600">
-                Showing <span class="font-medium text-navy" x-text="(currentPage - 1) * perPage + 1"></span> 
-                to <span class="font-medium text-navy" x-text="Math.min(currentPage * perPage, filteredMatters.length)"></span> 
+                Showing <span class="font-medium text-navy" x-text="(currentPage - 1) * perPage + 1"></span>
+                to <span class="font-medium text-navy" x-text="Math.min(currentPage * perPage, filteredMatters.length)"></span>
                 of <span class="font-medium text-navy" x-text="filteredMatters.length"></span> results
             </p>
-            
+
             <nav class="flex items-center gap-2" aria-label="Pagination">
                 <!-- Previous Button -->
-                <button 
-                    x-on:click="if (currentPage > 1) currentPage--" 
+                <button
+                    x-on:click="if (currentPage > 1) currentPage--"
                     :disabled="currentPage === 1"
-                    class="px-3 py-2 border border-gray-300 rounded-sm text-sm font-medium text-gray-700 bg-white hover:bg-gray-50 disabled:opacity-50 disabled:cursor-not-allowed transition flex items-center gap-1"
-                >
-                    <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7"></path></svg>
+                    class="px-3 py-2 border border-gray-300 rounded-sm text-sm font-medium text-gray-700 bg-white hover:bg-gray-50 disabled:opacity-50 disabled:cursor-not-allowed transition flex items-center gap-1">
+                    <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7"></path>
+                    </svg>
                     Previous
                 </button>
 
                 <!-- Page Numbers (Optional: shows a simplified version) -->
                 <div class="hidden sm:flex items-center gap-1">
                     <template x-for="page in totalPages" :key="page">
-                        <button 
+                        <button
                             x-on:click="currentPage = page"
                             x-text="page"
                             :class="{'bg-navy text-white border-navy': currentPage === page, 'bg-white text-gray-700 border-gray-300 hover:bg-gray-50': currentPage !== page}"
-                            class="px-3 py-2 border rounded-sm text-sm font-medium transition"
-                        ></button>
+                            class="px-3 py-2 border rounded-sm text-sm font-medium transition"></button>
                     </template>
                 </div>
 
                 <!-- Next Button -->
-                <button 
-                    x-on:click="if (currentPage < totalPages) currentPage++" 
+                <button
+                    x-on:click="if (currentPage < totalPages) currentPage++"
                     :disabled="currentPage === totalPages"
-                    class="px-3 py-2 border border-gray-300 rounded-sm text-sm font-medium text-gray-700 bg-white hover:bg-gray-50 disabled:opacity-50 disabled:cursor-not-allowed transition flex items-center gap-1"
-                >
+                    class="px-3 py-2 border border-gray-300 rounded-sm text-sm font-medium text-gray-700 bg-white hover:bg-gray-50 disabled:opacity-50 disabled:cursor-not-allowed transition flex items-center gap-1">
                     Next
-                    <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path></svg>
+                    <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path>
+                    </svg>
                 </button>
             </nav>
         </div>

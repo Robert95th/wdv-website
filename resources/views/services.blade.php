@@ -18,7 +18,7 @@
                 Services & what to bring to your first consultation
             </h2>
             <p class="text-gray-700 text-lg md:text-xl leading-relaxed">
-           An outline of each service we offer. The documents listed are a general guide please contact our office beforehand to confirm exactly what your matter requires.  </p>
+                An outline of each service we offer. The documents listed are a general guide please contact our office beforehand to confirm exactly what your matter requires. </p>
         </div>
     </div>
 </section>
@@ -49,12 +49,12 @@
                     </div>
                     <h4 class="font-serif-custom text-xl text-navy mb-3">Insolvency Practitioner</h4>
                     <p class="text-sm text-gray-600 leading-relaxed mb-6">
-                        Administration of insolvent estates in Liquidations and Sequestrations.
+                        Appointment as Liquidator and Trustee in the administration of the estates in liquidations and sequestrations of insolvent individuals, insolvent deceased estates, partnerships, close corporations, company estates, and other legal entities, from appointment through final distribution.
                     </p>
                 </div>
                 <button @click="openService(
                     'Insolvency Practitioner', 
-                    'Acting as liquidator or trustee for insolvent individuals, insolvent deceased estates, partnerships, close corporations, company estates, and other legal entities from initial appointment, through the creditors\' process, to final liquidation and distribution.', 
+                    'Appointment as Liquidator and Trustee in the administration of insolvent estates, deceased estates, partnerships, close corporations, companies, and other legal entities, managing the process from initial appointment through asset realisation, settlement of liabilities, and final distribution to creditors and beneficiaries.', 
                     ['ID document / company or CC registration documents', 'Full list of assets and liabilities', 'Recent bank statements (3–6 months)', 'List of creditors with contact details', 'Any summons, letters of demand or court orders received', 'Title deeds or ownership documents for major assets', 'Existing loan and credit agreements']
                 )" class="w-full bg-navy text-white text-center font-medium px-6 py-2.5 hover:bg-gray-800 transition duration-300">
                     Request Service
@@ -71,7 +71,7 @@
                     </div>
                     <h4 class="font-serif-custom text-xl text-navy mb-3">Estate Practitioner</h4>
                     <p class="text-sm text-gray-600 leading-relaxed mb-6">
-                        Deceased estates.
+                        Reporting and administering deceased estates to the Master of the High Court asset collection, creditor notices, tax clearance, and distribution to heirs in line with the will or intestate succession.
                     </p>
                 </div>
                 <button @click="openService(
@@ -93,7 +93,7 @@
                     </div>
                     <h4 class="font-serif-custom text-xl text-navy mb-3">Receiver</h4>
                     <p class="text-sm text-gray-600 leading-relaxed mb-6">
-                        Appointment as Receiver in partnerships, universal partnerships & divorce matters.
+                        Acting as receiver in the winding-up of business partnerships and universal partnerships, and in the division of assets arising from divorce proceedings.
                     </p>
                 </div>
                 <button @click="openService(
@@ -115,7 +115,7 @@
                     </div>
                     <h4 class="font-serif-custom text-xl text-navy mb-3">Special Resolution</h4>
                     <p class="text-sm text-gray-600 leading-relaxed mb-6">
-                        Voluntary Members / Creditors Winding-up by special resolution.
+                        Assisting companies and close corporations to wind up voluntarily by special resolution, whether as a members' or a creditors' voluntary winding-up.
                     </p>
                 </div>
                 <button @click="openService(
@@ -137,7 +137,7 @@
                     </div>
                     <h4 class="font-serif-custom text-xl text-navy mb-3">Administration & Restructuring</h4>
                     <p class="text-sm text-gray-600 leading-relaxed mb-6">
-                        Independent administration & restructuring of estates.
+                        Independent administration of estates in financial difficulty, structuring repayment and restructuring arrangements as an alternative to formal liquidation.
                     </p>
                 </div>
                 <button @click="openService(
@@ -159,8 +159,7 @@
                     </div>
                     <h4 class="font-serif-custom text-xl text-navy mb-3">Curatorships</h4>
                     <p class="text-sm text-gray-600 leading-relaxed mb-6">
-                        Appointment and ongoing administration of curatorships.
-                    </p>
+                        Appointment and ongoing administration of curatorships for individuals unable to manage their own financial or personal affairs. </p>
                 </div>
                 <button @click="openService(
                     'Curatorships', 
@@ -181,7 +180,7 @@
                     </div>
                     <h4 class="font-serif-custom text-xl text-navy mb-3">Cross Border Insolvency</h4>
                     <p class="text-sm text-gray-600 leading-relaxed mb-6">
-                        Cross border insolvency advice & foreign liquidator’s agent.
+                        Cross border insolvency advice, and acting as a foreign liquidator's agent in Namibia where an insolvent estate or company has assets, creditors or interests in Namibia.
                     </p>
                 </div>
                 <button @click="openService(
@@ -202,7 +201,7 @@
 
         <div class="flex min-h-full items-end justify-center p-4 text-center sm:items-center sm:p-0">
             <div x-show="openModal" x-transition:enter="ease-out duration-300" x-transition:enter-start="opacity-0 translate-y-4 sm:translate-y-0 sm:scale-95" x-transition:enter-end="opacity-100 translate-y-0 sm:scale-100" x-transition:leave="ease-in duration-200" x-transition:leave-start="opacity-100 translate-y-0 sm:scale-100" x-transition:leave-end="opacity-0 translate-y-4 sm:translate-y-0 sm:scale-95" class="relative transform overflow-hidden bg-white text-left shadow-xl transition-all sm:my-8 w-full max-w-4xl">
-                
+
                 <!-- Modal Header -->
                 <div class="bg-navy px-6 py-5 border-b-2 border-gold flex justify-between items-center">
                     <div>
@@ -210,68 +209,87 @@
                         <h3 class="text-2xl leading-6 font-serif-custom text-white" id="modal-title">Service Details & Request</h3>
                     </div>
                     <button @click="openModal = false" class="text-gray-400 hover:text-white transition">
-                        <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path></svg>
+                        <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path>
+                        </svg>
                     </button>
                 </div>
-
                 <div class="bg-[#fcfbf7] p-6 md:p-8">
-                    
                     <!-- Top Section: Description & Requirements -->
                     <div class="grid grid-cols-1 md:grid-cols-2 gap-8 mb-8">
-                        <!-- Left: Description -->
+                     
                         <div>
                             <h4 class="font-serif-custom text-2xl text-navy mb-4">What we do</h4>
                             <p class="text-gray-700 leading-relaxed text-sm md:text-base" x-text="serviceDescription"></p>
                         </div>
-                        
-                        <!-- Right: Requirements -->
-                      <div class="bg-navy border border-navy p-6 shadow-md text-left">
-                        <h4 class="font-serif-custom text-xl text-gold mb-4">Bring to your first consultation</h4>
-                        
-                        <ul class="list-disc list-outside ml-4 space-y-2 text-sm text-gray-200 marker:text-gold">
-                            <template x-for="req in requirements" :key="req">
-                                <li x-text="req" class="pl-1 leading-relaxed"></li>
-                            </template>
-                        </ul>
-                        
-                        <p class="text-xs text-gray-400 italic mt-5 border-t border-gray-700 pt-3">
-                            Indicative list — confirm specifics with our office.
-                        </p>
-                    </div>
+
+                       
+                        <div class="bg-navy border border-navy p-6 shadow-md text-left">
+                            <h4 class="font-serif-custom text-xl text-gold mb-4">Bring to your first consultation</h4>
+
+                            <ul class="list-disc list-outside ml-4 space-y-2 text-sm text-gray-200 marker:text-gold">
+                                <template x-for="req in requirements" :key="req">
+                                    <li x-text="req" class="pl-1 leading-relaxed"></li>
+                                </template>
+                            </ul>
+
+                            <p class="text-xs text-gray-400 italic mt-5 border-t border-gray-700 pt-3">
+                                Indicative list — confirm specifics with our office.
+                            </p>
+                        </div>
                     </div>
 
                     <!-- Bottom Section: The Form -->
                     <div class="border-t border-gray-300 pt-6">
                         <h4 class="font-serif-custom text-xl text-navy mb-4">Request this service</h4>
-                        <form action="#" method="POST" class="space-y-4">
+                        <!-- Form -->
+                        <form action="{{ route('service.request') }}" method="POST" class="px-4 py-5 sm:p-6 space-y-4">
                             @csrf
+                            <div class="hidden" aria-hidden="true">
+                                <input type="text" name="website_url" tabindex="-1" autocomplete="off">
+                            </div>
+                            <!-- Hidden input for the Service Name -->
                             <input type="hidden" name="service" x-model="selectedService">
 
+                            <!-- Success Message (Displays after submit) -->
+                            @if(session('success'))
+                            <div class="bg-green-100 border border-green-400 text-green-700 px-4 py-3 rounded relative mb-4">
+                                {{ session('success') }}
+                            </div>
+                            @endif
+
                             <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
+                                <!-- Full Name -->
                                 <div>
                                     <label class="block text-sm font-medium text-gray-700 mb-1">Full Name</label>
-                                    <input type="text" name="name" required class="block w-full border-gray-300 shadow-sm focus:border-navy focus:ring-navy sm:text-sm p-2.5 border bg-white">
+                                    <input type="text" name="name" required value="{{ old('name') }}" class="block w-full border-gray-300 shadow-sm focus:border-navy focus:ring-navy sm:text-sm p-2.5 border bg-white">
+                                    @error('name') <span class="text-red-500 text-xs">{{ $message }}</span> @enderror
                                 </div>
+
+                                <!-- Email -->
                                 <div>
                                     <label class="block text-sm font-medium text-gray-700 mb-1">Email Address</label>
-                                    <input type="email" name="email" required class="block w-full border-gray-300 shadow-sm focus:border-navy focus:ring-navy sm:text-sm p-2.5 border bg-white">
+                                    <input type="email" name="email" required value="{{ old('email') }}" class="block w-full border-gray-300 shadow-sm focus:border-navy focus:ring-navy sm:text-sm p-2.5 border bg-white">
+                                    @error('email') <span class="text-red-500 text-xs">{{ $message }}</span> @enderror
                                 </div>
+
+                                <!-- Phone -->
                                 <div>
                                     <label class="block text-sm font-medium text-gray-700 mb-1">Phone Number</label>
-                                    <input type="tel" name="phone" required class="block w-full border-gray-300 shadow-sm focus:border-navy focus:ring-navy sm:text-sm p-2.5 border bg-white">
-                                </div>
-                                <div>
-                                    <label class="block text-sm font-medium text-gray-700 mb-1">Date and Time</label>
-                                    <input type="datetime-local" name="datetime" required class="block w-full border-gray-300 shadow-sm focus:border-navy focus:ring-navy sm:text-sm p-2.5 border bg-white">
+                                    <input type="tel" name="phone" required value="{{ old('phone') }}" class="block w-full border-gray-300 shadow-sm focus:border-navy focus:ring-navy sm:text-sm p-2.5 border bg-white">
+                                    @error('phone') <span class="text-red-500 text-xs">{{ $message }}</span> @enderror
                                 </div>
                             </div>
-                            
-                            <!-- <div>
-                                <label class="block text-sm font-medium text-gray-700 mb-1">Brief description of your matter</label>
-                                <textarea name="message" rows="2" required class="block w-full border-gray-300 shadow-sm focus:border-navy focus:ring-navy sm:text-sm p-2.5 border bg-white"></textarea>
-                            </div> -->
 
-                            <div class="flex flex-col sm:flex-row justify-end gap-3 pt-4">
+                            <!-- Date and Time (New field based on your image) -->
+                            <div class="w-full md:w-1/3">
+                                <label class="block text-sm font-medium text-gray-700 mb-1">Preferred Date and Time</label>
+                                <input type="datetime-local" name="preferred_datetime" value="{{ old('preferred_datetime') }}" class="block w-full border-gray-300 shadow-sm focus:border-navy focus:ring-navy sm:text-sm p-2.5 border bg-white">
+                                @error('preferred_datetime') <span class="text-red-500 text-xs">{{ $message }}</span> @enderror
+                            </div>
+
+                            <!-- Buttons -->
+                            <div class="flex flex-col sm:flex-row justify-end gap-3 pt-4 border-t border-gray-200 mt-6">
                                 <button type="button" @click="openModal = false" class="inline-flex justify-center bg-white text-navy border border-navy px-6 py-2.5 text-sm font-semibold shadow-sm hover:bg-gray-50 transition">
                                     Cancel
                                 </button>

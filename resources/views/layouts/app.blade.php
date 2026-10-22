@@ -12,7 +12,11 @@
     <!-- Google Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@600;700&family=Cormorant+Garamond:ital,wght@0,500;0,600;1,500&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+
+
+
 
     <!-- Tailwind CSS (Vite) -->
     @vite(['resources/css/app.css', 'resources/js/app.js'])
@@ -77,7 +81,7 @@
     <header class="bg-navy text-white border-b-2 border-gold relative z-50" x-data="{ mobileMenuOpen: false }">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div class="flex justify-between items-center py-4 md:py-8">
-                
+
                 <!-- Logo & Brand (Flex row on mobile too, to save space) -->
                 <a href="/" class="flex flex-row items-center gap-4 text-left group">
                     <img src="{{ asset('images/logo.png') }}" alt="W.D.V. Schickerling Logo" class="w-14 h-14 md:w-24 md:h-24 rounded-full border-2 border-gold bg-white object-cover shrink-0 group-hover:opacity-90 transition">
@@ -105,22 +109,26 @@
 
                 <!-- Mobile Hamburger Button (Visible only on Mobile) -->
                 <button @click="mobileMenuOpen = !mobileMenuOpen" class="md:hidden text-gold hover:text-white focus:outline-none p-2">
-                    <svg x-show="!mobileMenuOpen" class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path></svg>
-                    <svg x-show="mobileMenuOpen" style="display: none;" class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path></svg>
+                    <svg x-show="!mobileMenuOpen" class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path>
+                    </svg>
+                    <svg x-show="mobileMenuOpen" style="display: none;" class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path>
+                    </svg>
                 </button>
             </div>
         </div>
 
         <!-- Mobile Menu Dropdown -->
-        <div x-show="mobileMenuOpen" 
-             x-transition:enter="transition ease-out duration-200"
-             x-transition:enter-start="opacity-0 -translate-y-2"
-             x-transition:enter-end="opacity-100 translate-y-0"
-             x-transition:leave="transition ease-in duration-150"
-             x-transition:leave-start="opacity-100 translate-y-0"
-             x-transition:leave-end="opacity-0 -translate-y-2"
-             style="display: none;" 
-             class="md:hidden absolute top-full left-0 w-full bg-navy border-b-2 border-gold shadow-xl">
+        <div x-show="mobileMenuOpen"
+            x-transition:enter="transition ease-out duration-200"
+            x-transition:enter-start="opacity-0 -translate-y-2"
+            x-transition:enter-end="opacity-100 translate-y-0"
+            x-transition:leave="transition ease-in duration-150"
+            x-transition:leave-start="opacity-100 translate-y-0"
+            x-transition:leave-end="opacity-0 -translate-y-2"
+            style="display: none;"
+            class="md:hidden absolute top-full left-0 w-full bg-navy border-b-2 border-gold shadow-xl">
             <ul class="px-4 pt-2 pb-6 space-y-1 text-sm font-medium text-gold">
                 <li><a href="/" class="block px-4 py-3 rounded hover:bg-gray-800 hover:text-white transition">Home</a></li>
                 <li><a href="/about" class="block px-4 py-3 rounded hover:bg-gray-800 hover:text-white transition">About</a></li>
@@ -173,23 +181,45 @@
                 </div>
 
                 <!-- Column 2: Newsletter Form -->
-                <div class="text-center px-4">
-                    <h3 class="font-serif-custom text-3xl text-gold mb-2">Get Updates</h3>
-                    <p class="text-sm text-gray-400 italic mb-6">Subscribe to our newsletter to receive updates and special announcements.</p>
+<div class="text-center px-4">
+    <h3 class="font-serif-custom text-3xl text-gold mb-2">Get Updates</h3>
+    <p class="text-sm text-gray-400 italic mb-6">Subscribe to our newsletter to receive updates and special announcements.</p>
 
-                    <form action="#" method="POST" class="space-y-3">
-                        @csrf
-                        <div>
-                            <input type="email" placeholder="*Email" class="w-full bg-transparent border border-gray-500 p-3 text-sm text-white placeholder-gray-400 focus:outline-none focus:border-gold transition">
-                        </div>
-                        <div class="flex flex-col sm:flex-row gap-3">
-                            <input type="text" placeholder="*First Name" class="w-full bg-transparent border border-gray-500 p-3 text-sm text-white placeholder-gray-400 focus:outline-none focus:border-gold transition">
-                            <button type="submit" class="bg-white text-navy font-bold text-sm px-6 py-3 hover:bg-gray-200 transition whitespace-nowrap">
-                                SIGN UP
-                            </button>
-                        </div>
-                    </form>
-                </div>
+    <!-- Success / Error Messages -->
+    @if(session('success'))
+        <div class="bg-green-900/50 border border-green-500 text-green-200 px-4 py-2 rounded text-sm mb-4">
+            {{ session('success') }}
+        </div>
+    @endif
+
+    <form action="{{ route('newsletter.subscribe') }}" method="POST" class="space-y-3">
+        @csrf
+        
+        <!-- Honeypot Field (Hidden from users) -->
+        <div class="hidden" aria-hidden="true">
+            <input type="text" name="website_url" tabindex="-1" autocomplete="off">
+        </div>
+
+        <div>
+            <input type="email" name="email" value="{{ old('email') }}" placeholder="*Email" required class="w-full bg-transparent border border-gray-500 p-3 text-sm text-white placeholder-gray-400 focus:outline-none focus:border-gold transition">
+            @error('email')
+                <span class="text-red-400 text-xs text-left block mt-1">{{ $message }}</span>
+            @enderror
+        </div>
+        
+        <div class="flex flex-col sm:flex-row gap-3">
+            <div class="w-full">
+                <input type="text" name="first_name" value="{{ old('first_name') }}" placeholder="*First Name" required class="w-full bg-transparent border border-gray-500 p-3 text-sm text-white placeholder-gray-400 focus:outline-none focus:border-gold transition">
+                @error('first_name')
+                    <span class="text-red-400 text-xs text-left block mt-1">{{ $message }}</span>
+                @enderror
+            </div>
+            <button type="submit" class="bg-white text-navy font-bold text-sm px-6 py-3 hover:bg-gray-200 transition whitespace-nowrap h-[46px]">
+                SIGN UP
+            </button>
+        </div>
+    </form>
+</div>
 
                 <!-- Column 3: Contact Details -->
                 <div class="flex flex-col md:border-l border-gray-700 md:pl-8 text-center md:text-left">
@@ -243,8 +273,8 @@
             <div class="border-t border-gray-700 pt-8 flex flex-col md:flex-row justify-between items-center text-xs text-gray-400">
                 <p>&copy; {{ date('Y') }} W.D.V. Schickerling. All Rights Reserved.</p>
                 <div class="flex gap-6 mt-4 md:mt-0">
-                    <a href="#" class="hover:text-white transition">Privacy Policy</a>
-                    <a href="#" class="hover:text-white transition">Terms of Service</a>
+                    <a href="{{ route('privacy') }}" class="hover:text-white transition">Privacy Policy</a>
+                    <a href="{{ route('terms') }}" class="hover:text-white transition">Terms of Service</a>
                 </div>
             </div>
         </div>

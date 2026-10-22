@@ -10,6 +10,13 @@ class PropertyListing extends Model
     use HasFactory;
 
     protected $fillable = [
-        'category', 'title', 'description', 'auctioneer', 'date_and_time', 'venue', 'image'
+        'category',
+        'title',
+        'description',
+        'auctioneer',
+        'date_and_time',
+        'venue',
+        'image',
+        'view_status'
     ];
 }

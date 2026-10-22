@@ -17,6 +17,7 @@ class EstateMatter extends Model
         'date_and_venue',
         'expiry_date',
         'view_status',
+        'file_link'
     ];
 
     // Cast the new columns to their proper types

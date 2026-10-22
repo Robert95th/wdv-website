@@ -36,7 +36,7 @@
                     <ul class="space-y-4">
                         <li class="flex items-start text-gray-300">
                             <span class="text-gold mr-3 text-lg leading-none mt-1">•</span>
-                            <span class="text-sm md:text-base leading-relaxed">Administration of insolvent estates in Liquidations and Sequestrations</span>
+                            <span class="text-sm md:text-base leading-relaxed">Appointment as Liquidator and Trustee in the administration of insolvent estates in Liquidations and Sequestrations</span>
                         </li>
                         <li class="flex items-start text-gray-300">
                             <span class="text-gold mr-3 text-lg leading-none mt-1">•</span>
@@ -75,7 +75,7 @@
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <h2 class="font-serif-custom text-3xl md:text-4xl text-navy mb-6">Our services</h2>
         <p class="text-gray-600 max-w-3xl mb-12 text-lg">
-            Every matter is handled with the discretion, record-keeping and legal precision that insolvency and estate work demands.
+            Every matter is handled with the discretion, record keeping and legal precision that insolvency and estate work demands.
         </p>
 
         <!-- Service Cards Grid -->

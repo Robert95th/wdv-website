@@ -144,7 +144,7 @@
                     </div>
 
                     <!-- Form (Added enctype for file uploads) -->
-                    <form :action="isEditMode ? '/admin/properties/' + formData.id : '/admin/properties'" method="POST" enctype="multipart/form-data" class="p-6 space-y-5">
+                    <form :action="isEditMode ? '/cmp/properties/' + formData.id : '/cmp/properties'" method="POST" enctype="multipart/form-data" class="p-6 space-y-5">
                         @csrf
                         <!-- Method spoofing for PUT request -->
                         <template x-if="isEditMode">

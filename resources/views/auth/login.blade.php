@@ -8,7 +8,7 @@
     <!-- Session Status -->
     <x-auth-session-status class="mb-4 text-green-600 font-medium" :status="session('status')" />
 
-    <form method="POST" action="{{ route('login') }}" class="space-y-5">
+    <form method="POST" action="{{ route('login') }}">
         @csrf
 
         <!-- Email Address -->
@@ -35,9 +35,9 @@
             </label>
 
             @if (Route::has('password.request'))
-                <a class="text-sm text-gray-600 hover:text-gold transition underline decoration-transparent hover:decoration-gold" href="{{ route('password.request') }}">
-                    {{ __('Forgot password?') }}
-                </a>
+            <a class="text-sm text-gray-600 hover:text-gold transition underline decoration-transparent hover:decoration-gold" href="{{ route('password.request') }}">
+                {{ __('Forgot password?') }}
+            </a>
             @endif
         </div>
 

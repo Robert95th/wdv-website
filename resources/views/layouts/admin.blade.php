@@ -135,7 +135,7 @@
                             class="absolute right-0 mt-2 w-56 bg-white rounded-lg shadow-xl py-2 z-50 text-gray-700"
                         >
                             <a
-                                href="{{ route('profile.edit') }}"
+                                href="{{ route('admin.profile.edit') }}"
                                 class="block px-4 py-3 hover:bg-gray-50 hover:text-navy transition"
                             >
                                 Profile Settings
@@ -225,7 +225,7 @@
                 <nav class="space-y-1">
 
                     <a
-                        href="{{ route('dashboard') }}"
+                        href="{{ route('admin.dashboard') }}"
                         @click="mobileMenuOpen = false"
                         class="flex items-center px-4 py-3 rounded-lg transition
                         {{ request()->routeIs('dashboard') ? 'bg-cream text-navy font-semibold' : 'text-gold hover:bg-white/10 hover:text-white' }}"
@@ -266,10 +266,10 @@
                     </p>
                 </div>
 
-                <nav class="space-y-1">
+                <!-- <nav class="space-y-1">
 
                     <a
-                        href="{{ route('profile.edit') }}"
+                        href="{{ route('admin.profile.edit') }}"
                         @click="mobileMenuOpen = false"
                         class="flex items-center px-4 py-3 rounded-lg transition
                         {{ request()->routeIs('profile.*') ? 'bg-cream text-navy font-semibold' : 'text-gold hover:bg-white/10 hover:text-white' }}"
@@ -288,7 +288,7 @@
                         </button>
                     </form>
 
-                </nav>
+                </nav> -->
             </div>
         </div>
     </header>
@@ -308,7 +308,7 @@
                     <nav class="space-y-1">
 
                         <a
-                            href="{{ route('dashboard') }}"
+                            href="{{ route('admin.dashboard') }}"
                             class="flex items-center gap-3 px-3 py-3 rounded-lg text-sm font-medium transition
                             {{ request()->routeIs('dashboard') ? 'bg-cream text-navy border-l-4 border-gold' : 'text-gray-600 hover:bg-gray-50 hover:text-navy' }}"
                         >
@@ -348,12 +348,12 @@
 
                         <div class="my-5 border-t border-gray-100"></div>
 
-                        <p class="px-3 text-xs font-bold text-gray-400 uppercase tracking-wider mb-2">
+                        <!-- <p class="px-3 text-xs font-bold text-gray-400 uppercase tracking-wider mb-2">
                             Account
                         </p>
 
                         <a
-                            href="{{ route('profile.edit') }}"
+                            href="{{ route('admin.profile.edit') }}"
                             class="flex items-center gap-3 px-3 py-3 rounded-lg text-sm font-medium transition
                             {{ request()->routeIs('profile.*') ? 'bg-cream text-navy border-l-4 border-gold' : 'text-gray-600 hover:bg-gray-50 hover:text-navy' }}"
                         >
@@ -363,7 +363,7 @@
                                 </path>
                             </svg>
                             <span>Profile Settings</span>
-                        </a>
+                        </a> -->
 
                     </nav>
                 </div>

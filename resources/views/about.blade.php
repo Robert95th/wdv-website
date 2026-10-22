@@ -20,7 +20,7 @@
                             The practice is built on discretion, careful record-keeping, and direct, personal involvement in every estate under its administration.
                         </p>
                         <div class="flex flex-col sm:flex-row gap-4">
-                            <a href="#services" class="inline-block bg-navy text-white text-center font-medium px-8 py-3.5 hover:bg-gray-800 transition duration-300">
+                            <a href="services" class="inline-block bg-navy text-white text-center font-medium px-8 py-3.5 hover:bg-gray-800 transition duration-300">
                                 View Services
                             </a>
                           
@@ -154,14 +154,7 @@
                             Wiam Schickerling holds a postgraduate qualification in Business Administration and has practised as a registered Insolvency and Estate Practitioner since 2018, administering insolvent and deceased estates and acting as receiver in partnership, universal partnership and divorce matters throughout Namibia.
 
                         </p>
-                        <!-- <div class="flex flex-col sm:flex-row gap-4 justify-center mb-3">
-                            <a href="#" class="inline-block bg-navy text-white text-center font-medium px-6 py-3 hover:bg-gray-800 transition">
-                                Free Consultation
-                            </a>
-                            <a href="#" class="inline-block bg-transparent text-navy border border-navy text-center font-medium px-6 py-3 hover:bg-navy hover:text-white transition">
-                                Learn More
-                            </a>
-                        </div> -->
+                     
                     </div>
 
                 </div>

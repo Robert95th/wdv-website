@@ -169,7 +169,7 @@
                     </div>
 
                     <!-- Form -->
-                    <form :action="isEditMode ? '/admin/meetings/' + formData.id : '/admin/meetings'" method="POST" enctype="multipart/form-data" class="p-6 space-y-5">
+                    <form :action="isEditMode ? '/cmp/meetings/' + formData.id : '/cmp/meetings'" method="POST" enctype="multipart/form-data" class="p-6 space-y-5">
                         @csrf
                         <template x-if="isEditMode">
                             <input type="hidden" name="_method" value="PUT">

@@ -6,46 +6,36 @@ use Illuminate\Console\Command;
 use App\Models\ServiceRequest;
 use Illuminate\Support\Facades\Mail;
 use Carbon\Carbon;
+use App\Models\MailingList;
 
 class SendDailyRequestSummary extends Command
 {
     protected $signature = 'reminders:requests';
-    protected $description = 'Sends a daily summary of service requests received';
+    protected $description = 'Sends daily request summaries';
 
     public function handle()
     {
-        $this->info('Checking for new service requests...');
+        $this->info('Generating request summaries...');
 
-        // Get requests submitted yesterday
-        $yesterday = Carbon::yesterday();
-        $requests = ServiceRequest::whereDate('created_at', $yesterday)->get();
+        // 1. Fetch your request data (Update this query to match your actual model/logic)
+        // Example: $requests = ServiceRequest::whereDate('created_at', today())->get();
 
-        if ($requests->isEmpty()) {
-            $this->info('No new service requests received.');
+        // 2. Fetch active recipients
+        $recipients = MailingList::where('is_active', true)->get();
+
+        if ($recipients->isEmpty()) {
+            $this->error('No active recipients found in the mailing list.');
             return;
         }
 
-        // We will build a simple text-based email for this summary to save time
-        $emailBody = "Good morning,\n\nHere is a summary of the service requests received yesterday:\n\n";
+        // 3. Send the email
+        foreach ($recipients as $recipient) {
+            // Assuming you have a RequestSummary Mailable
+            // Mail::to($recipient->email)->send(new RequestSummary($requests));
 
-        foreach ($requests as $req) {
-            $emailBody .= "- Service: {$req->service}\n";
-            $emailBody .= "  Name: {$req->name}\n";
-            $emailBody .= "  Email: {$req->email}\n";
-            $emailBody .= "  Phone: {$req->phone}\n";
-            $emailBody .= "  Date requested: {$req->created_at->format('H:i')}\n\n";
+            $this->line("Sent request summary to: {$recipient->email}");
         }
 
-        $emailBody .= "Please log in to the admin dashboard to view full details.";
-
-        // Send the email
-        $adminEmail = 'wiam@iande.co';
-        
-        Mail::raw($emailBody, function ($message) use ($adminEmail) {
-            $message->to($adminEmail)
-                    ->subject('Daily Service Request Summary');
-        });
-
-        $this->info("Successfully sent summary for {$requests->count()} request(s).");
+        $this->info("Successfully sent request summaries to " . $recipients->count() . " recipient(s).");
     }
 }

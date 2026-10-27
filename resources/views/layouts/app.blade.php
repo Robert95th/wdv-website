@@ -5,7 +5,7 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="csrf-token" content="{{ csrf_token() }}">
-
+<link rel="icon" type="image/png" href="{{ asset('images/logo.png') }}">
     <!-- Dynamic Page Title -->
     <title>@yield('title', 'W.D.V. Schickerling | Insolvency & Estate Practitioners Namibia')</title>
     <meta name="description" content="@yield('meta_description', 'Registered Insolvency and Estate Practitioners in Namibia. Specializing in liquidations, sequestration, deceased estates, and trusteeship.')">
@@ -84,12 +84,12 @@
 
                 <!-- Logo & Brand (Flex row on mobile too, to save space) -->
                 <a href="/" class="flex flex-row items-center gap-4 text-left group">
-                    <img src="{{ asset('images/logo.png') }}" alt="W.D.V. Schickerling Logo" class="w-48 h-48  rounded-full border-2 border-gold bg-white object-cover shrink-0 group-hover:opacity-90 transition">
+                    <img src="{{ asset('images/logo.png') }}" alt="W.D.V. Schickerling Logo" class="w-48 h-48 md:w-48 md:h-48 rounded-full border-2 border-gold bg-white object-cover shrink-0 group-hover:opacity-90 transition">
                     <div>
-                        <h1 class="font-serif-custom text-center text-xl md:text-4xl text-gold tracking-widest leading-none">
+                        <h1 class="font-serif-custom text-center text-2xl md:text-4xl text-gold tracking-widest leading-none">
                             W.D.V.
                         </h1>
-                        <h1 class="font-serif-custom text-xl md:text-4xl text-gold tracking-widest leading-none">
+                        <h1 class="font-serif-custom text-2xl md:text-4xl text-gold tracking-widest leading-none">
                             SCHICKERLING
                         </h1>
                         <p class="text-gold text-[8px] md:text-xs tracking-[0.2em] uppercase mt-1 md:mt-2 font-medium">
@@ -107,13 +107,13 @@
                         <li><a href="/meetings" class="{{ request()->is('meetings*') ? 'text-white' : 'hover:text-white' }} transition">Estate Meetings</a></li>
 
                         <li><a href="/properties" class="{{ request()->is('properties*') ? 'text-white' : 'hover:text-white' }} transition">Property for Sale</a></li>
-                        <li><a href="/documents" class="{{ request()->is('documents*') ? 'text-white' : 'hover:text-white' }} transition">Estate Documents</a></li>
+                        <li><a href="/documents" class="{{ request()->is('documents*') ? 'text-white' : 'hover:text-white' }} transition">Estate Files</a></li>
                         <li><a href="/archived" class="{{ request()->is('archived*') ? 'text-white' : 'hover:text-white' }} transition">Archived Files</a></li>
                     </ul>
                 </nav>
 
                 <!-- Mobile Hamburger Button (Visible only on Mobile) -->
-                <button @click="mobileMenuOpen = !mobileMenuOpen" class="md:hidden text-gold hover:text-white focus:outline-none p-2">
+                <button @click="mobileMenuOpen = !mobileMenuOpen" class="md:hidden text-gold hover:text-white focus:outline-none p-2" aria-label="Toggle navigation menu">
                     <svg x-show="!mobileMenuOpen" class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path>
                     </svg>
@@ -141,7 +141,7 @@
                 <li><a href="/meetings" class="block px-4 py-3 rounded hover:bg-gray-800 hover:text-white transition">Estate Meetings</a></li>
 
                 <li><a href="/properties" class="block px-4 py-3 rounded hover:bg-gray-800 hover:text-white transition">Property for Sale</a></li>
-                <li><a href="/documents" class="block px-4 py-3 rounded hover:bg-gray-800 hover:text-white transition">Estate Documents</a></li>
+                <li><a href="/documents" class="block px-4 py-3 rounded hover:bg-gray-800 hover:text-white transition">Estate Files</a></li>
                 <li><a href="/archived" class="block px-4 py-3 rounded hover:bg-gray-800 hover:text-white transition">Archived Files</a></li>
             </ul>
         </div>
@@ -170,7 +170,8 @@
                             <li><a href="/about" class="{{ request()->is('about') ? 'text-white' : 'hover:text-white' }} transition">About</a></li>
                             <li><a href="/services" class="{{ request()->is('services') ? 'text-white' : 'hover:text-white' }} transition">Services</a></li>
                             <li><a href="/meetings" class="{{ request()->is('meetings*') ? 'text-white' : 'hover:text-white' }} transition">Estate Meetings</a></li>
-
+ 							<li><a href="/documents" class="{{ request()->is('documents*') ? 'text-white' : 'hover:text-white' }} transition">Estate Files</a></li>
+                       		
                             <li><a href="/properties" class="{{ request()->is('properties*') ? 'text-white' : 'hover:text-white' }} transition">Property for Sale</a></li>
                             <li><a href="/archived" class="{{ request()->is('archived*') ? 'text-white' : 'hover:text-white' }} transition">Archived Files</a></li>
                         </ul>

@@ -4,13 +4,17 @@ namespace App\Http\Controllers;
 
 use App\Http\Controllers\Controller;
 use App\Models\PropertyListing;
+use App\Models\PropertyImage; // Add this
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
+use App\Services\ImageCompressor;
+
 class PropertyController extends Controller
 {
     public function index()
     {
-        $properties = PropertyListing::latest()->paginate(10);
+        // Load the properties with their images so the table can show thumbnails
+        $properties = PropertyListing::with('images')->latest()->paginate(10);
         return view('admin.properties.index', compact('properties'));
     }
 
@@ -23,31 +27,39 @@ class PropertyController extends Controller
             'auctioneer' => 'nullable|string|max:255',
             'date_and_time' => 'nullable|string|max:255',
             'venue' => 'nullable|string|max:255',
-            // Change to validate an uploaded image file instead of a URL
-            'image' => 'nullable|image|mimes:jpeg,png,jpg,webp|max:5120', // 5MB Max
-            'document' => 'nullable|file|mimes:pdf,doc,docx|max:10240', // 10MB Max
+            // Validate multiple images (array)
+            'images.*' => 'nullable|image|mimes:jpeg,png,jpg,webp|max:5120',
+            'document' => 'nullable|file|mimes:pdf,doc,docx|max:10240',
             'view_status' => 'required|boolean',
         ]);
 
         $validated['view_status'] = (bool) $validated['view_status'];
 
-        // Handle Image Upload
-        if ($request->hasFile('image')) {
-            $image = $request->file('image');
-            $imageName = time() . '_img_' . $image->getClientOriginalName();
-            $imagePath = $image->storeAs('properties/images', $imageName, 'public');
-            $validated['image'] = $imagePath;
+        // 1. Create the Property first
+        $property = PropertyListing::create($validated);
+
+        // 2. Handle Multiple Image Uploads & Compression
+        if ($request->hasFile('images')) {
+            foreach ($request->file('images') as $index => $file) {
+                // Compress and store the image using our helper
+                $imagePath = ImageCompressor::compressAndStore($file);
+
+                // Save to the new property_images table
+                PropertyImage::create([
+                    'property_listing_id' => $property->id,
+                    'image_path' => $imagePath,
+                    'is_primary' => $index === 0, // Make the first image the primary one
+                ]);
+            }
         }
 
-        // Handle Document Upload
+        // 3. Handle Document Upload
         if ($request->hasFile('document')) {
             $file = $request->file('document');
             $filename = time() . '_doc_' . $file->getClientOriginalName();
             $path = $file->storeAs('properties/documents', $filename, 'public');
-            $validated['document_path'] = $path;
+            $property->update(['document_path' => $path]);
         }
-
-        PropertyListing::create($validated);
 
         return redirect()->route('admin.properties.index')->with('success', 'Property created successfully.');
     }
@@ -61,27 +73,34 @@ class PropertyController extends Controller
             'auctioneer' => 'nullable|string|max:255',
             'date_and_time' => 'nullable|string|max:255',
             'venue' => 'nullable|string|max:255',
-            'image' => 'nullable|image|mimes:jpeg,png,jpg,webp|max:5120',
+            'images.*' => 'nullable|image|mimes:jpeg,png,jpg,webp|max:5120',
             'document' => 'nullable|file|mimes:pdf,doc,docx|max:10240',
             'view_status' => 'required|boolean',
         ]);
 
         $validated['view_status'] = (bool) $validated['view_status'];
 
-        // Handle New Image Upload
-        if ($request->hasFile('image')) {
-            // Delete old image if exists
-            if ($property->image && Storage::disk('public')->exists($property->image)) {
-                Storage::disk('public')->delete($property->image);
-            }
+        // 1. Update basic property details
+        $property->update($validated);
 
-            $image = $request->file('image');
-            $imageName = time() . '_img_' . $image->getClientOriginalName();
-            $imagePath = $image->storeAs('properties/images', $imageName, 'public');
-            $validated['image'] = $imagePath;
+        // 2. Handle New Image Uploads (Append to existing)
+        if ($request->hasFile('images')) {
+            // Check if the property already has a primary image
+            $hasPrimary = $property->images()->where('is_primary', true)->exists();
+
+            foreach ($request->file('images') as $index => $file) {
+                $imagePath = ImageCompressor::compressAndStore($file);
+
+                PropertyImage::create([
+                    'property_listing_id' => $property->id,
+                    'image_path' => $imagePath,
+                    // If no primary exists, make the first newly uploaded one primary
+                    'is_primary' => (!$hasPrimary && $index === 0),
+                ]);
+            }
         }
 
-        // Handle New Document Upload
+        // 3. Handle New Document Upload
         if ($request->hasFile('document')) {
             // Delete old document if exists
             if ($property->document_path && Storage::disk('public')->exists($property->document_path)) {
@@ -91,17 +110,42 @@ class PropertyController extends Controller
             $file = $request->file('document');
             $filename = time() . '_doc_' . $file->getClientOriginalName();
             $path = $file->storeAs('properties/documents', $filename, 'public');
-            $validated['document_path'] = $path;
+            $property->update(['document_path' => $path]);
         }
-
-        $property->update($validated);
 
         return redirect()->route('admin.properties.index')->with('success', 'Property updated successfully.');
     }
 
     public function destroy(PropertyListing $property)
     {
+        // 1. Delete all associated images from storage and database
+        foreach ($property->images as $img) {
+            if (Storage::disk('public')->exists($img->image_path)) {
+                Storage::disk('public')->delete($img->image_path);
+            }
+            $img->delete();
+        }
+
+        // 2. Delete the document if it exists
+        if ($property->document_path && Storage::disk('public')->exists($property->document_path)) {
+            Storage::disk('public')->delete($property->document_path);
+        }
+
+        // 3. Delete the property itself
         $property->delete();
-        return redirect()->route('admin.properties.index')->with('success', 'Property deleted successfully.');
+
+        return redirect()->route('admin.properties.index')->with('success', 'Property and all associated media deleted successfully.');
+    }
+    public function destroyImage(\App\Models\PropertyImage $image)
+    {
+        // Delete physical file
+        if (\Illuminate\Support\Facades\Storage::disk('public')->exists($image->image_path)) {
+            \Illuminate\Support\Facades\Storage::disk('public')->delete($image->image_path);
+        }
+
+        // Delete database record
+        $image->delete();
+
+        return back()->with('success', 'Image removed successfully.');
     }
 }

@@ -7,6 +7,7 @@ use App\Models\ServiceRequest;
 use Illuminate\Support\Facades\Mail;
 use Carbon\Carbon;
 use App\Models\MailingList;
+use App\Mail\RequestSummary;
 
 class SendDailyRequestSummary extends Command
 {
@@ -18,7 +19,7 @@ class SendDailyRequestSummary extends Command
         $this->info('Generating request summaries...');
 
         // 1. Fetch your request data (Update this query to match your actual model/logic)
-        // Example: $requests = ServiceRequest::whereDate('created_at', today())->get();
+        $requests = ServiceRequest::whereDate('created_at', today())->get();
 
         // 2. Fetch active recipients
         $recipients = MailingList::where('is_active', true)->get();
@@ -31,7 +32,7 @@ class SendDailyRequestSummary extends Command
         // 3. Send the email
         foreach ($recipients as $recipient) {
             // Assuming you have a RequestSummary Mailable
-            // Mail::to($recipient->email)->send(new RequestSummary($requests));
+            Mail::to($recipient->email)->send(new RequestSummary($requests));
 
             $this->line("Sent request summary to: {$recipient->email}");
         }

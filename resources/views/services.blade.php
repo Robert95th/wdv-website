@@ -52,12 +52,17 @@
                         Appointment as Liquidator and Trustee in the administration of the estates in liquidations and sequestrations of insolvent individuals, insolvent deceased estates, partnerships, close corporations, company estates, and other legal entities, from appointment through final distribution.
                     </p>
                 </div>
+                <!-- Updated Button -->
                 <button @click="openService(
                     'Insolvency Practitioner', 
                     'Appointment as Liquidator and Trustee in the administration of insolvent estates, deceased estates, partnerships, close corporations, companies, and other legal entities, managing the process from initial appointment through asset realisation, settlement of liabilities, and final distribution to creditors and beneficiaries.', 
                     ['ID document / company or CC registration documents', 'Full list of assets and liabilities', 'Recent bank statements (3–6 months)', 'List of creditors with contact details', 'Any summons, letters of demand or court orders received', 'Title deeds or ownership documents for major assets', 'Existing loan and credit agreements']
-                )" class="w-full bg-navy text-white text-center font-medium px-6 py-2.5 hover:bg-gray-800 transition duration-300">
-                    Request Service
+                )" 
+                class="group w-full flex items-center justify-center gap-2 bg-navy text-white text-center font-medium px-6 py-3 hover:bg-[#142c49] hover:shadow-lg hover:-translate-y-0.5 transition-all duration-300 border border-transparent hover:border-gold">
+                    <svg class="w-4 h-4 text-gold group-hover:scale-110 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"></path>
+                    </svg>
+                    <span>Schedule an Appointment</span>
                 </button>
             </div>
 
@@ -74,12 +79,17 @@
                         Reporting and administering deceased estates to the Master of the High Court asset collection, creditor notices, tax clearance, and distribution to heirs in line with the will or intestate succession.
                     </p>
                 </div>
+                <!-- Updated Button -->
                 <button @click="openService(
                     'Estate Practitioner', 
                     'Reporting and administering deceased estates to the Master of the High Court asset collection, creditor notices, tax clearance, and distribution to heirs in line with the will or intestate succession.', 
                     ['Death certificate', 'Original will, if one exists', 'ID documents of the deceased and heirs', 'Marriage certificate / antenuptial contract', 'List of assets and liabilities, title deeds, vehicle papers', 'Life policy and bank statement details']
-                )" class="w-full bg-navy text-white text-center font-medium px-6 py-2.5 hover:bg-gray-800 transition duration-300">
-                    Request Service
+                )" 
+                class="group w-full flex items-center justify-center gap-2 bg-navy text-white text-center font-medium px-6 py-3 hover:bg-[#142c49] hover:shadow-lg hover:-translate-y-0.5 transition-all duration-300 border border-transparent hover:border-gold">
+                    <svg class="w-4 h-4 text-gold group-hover:scale-110 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"></path>
+                    </svg>
+                    <span>Schedule an Appointment</span>
                 </button>
             </div>
 
@@ -96,12 +106,17 @@
                         Acting as receiver in the winding-up of business partnerships and universal partnerships, and in the division of assets arising from divorce proceedings.
                     </p>
                 </div>
+                <!-- Updated Button -->
                 <button @click="openService(
                     'Receiver', 
                     'Acting as receiver in the winding-up of business partnerships and universal partnerships, and in the division of assets arising from divorce proceedings.', 
                     ['Partnership agreement, or evidence of a universal partnership', 'Divorce order, decree, or summons', 'Schedule of assets and liabilities', 'Recent bank statements', 'Valuations of major assets, where available', 'ID documents of all parties']
-                )" class="w-full bg-navy text-white text-center font-medium px-6 py-2.5 hover:bg-gray-800 transition duration-300">
-                    Request Service
+                )" 
+                class="group w-full flex items-center justify-center gap-2 bg-navy text-white text-center font-medium px-6 py-3 hover:bg-[#142c49] hover:shadow-lg hover:-translate-y-0.5 transition-all duration-300 border border-transparent hover:border-gold">
+                    <svg class="w-4 h-4 text-gold group-hover:scale-110 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"></path>
+                    </svg>
+                    <span>Schedule an Appointment</span>
                 </button>
             </div>
 
@@ -118,12 +133,17 @@
                         Assisting companies and close corporations to wind up voluntarily by special resolution, whether as a members' or a creditors' voluntary winding-up.
                     </p>
                 </div>
+                <!-- Updated Button -->
                 <button @click="openService(
                     'Special Resolution', 
                     'Assisting companies and close corporations to wind up voluntarily by special resolution, whether as a members\' or a creditors\' voluntary winding-up.', 
                     ['Certified copy of the special resolution', 'Company / CC registration documents', 'Latest financial statements', 'List of assets and liabilities', 'Creditor list and shareholder / member register']
-                )" class="w-full bg-navy text-white text-center font-medium px-6 py-2.5 hover:bg-gray-800 transition duration-300">
-                    Request Service
+                )" 
+                class="group w-full flex items-center justify-center gap-2 bg-navy text-white text-center font-medium px-6 py-3 hover:bg-[#142c49] hover:shadow-lg hover:-translate-y-0.5 transition-all duration-300 border border-transparent hover:border-gold">
+                    <svg class="w-4 h-4 text-gold group-hover:scale-110 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"></path>
+                    </svg>
+                    <span>Schedule an Appointment</span>
                 </button>
             </div>
 
@@ -140,12 +160,17 @@
                         Independent administration of estates in financial difficulty, structuring repayment and restructuring arrangements as an alternative to formal liquidation.
                     </p>
                 </div>
+                <!-- Updated Button -->
                 <button @click="openService(
                     'Administration & Restructuring', 
                     'Independent administration of estates in financial difficulty, structuring repayment and restructuring arrangements as an alternative to formal liquidation.', 
                     ['Current financial statements', 'List of assets and liabilities', 'Existing loan and credit agreements', 'Proof of income', 'Correspondence received from creditors']
-                )" class="w-full bg-navy text-white text-center font-medium px-6 py-2.5 hover:bg-gray-800 transition duration-300">
-                    Request Service
+                )" 
+                class="group w-full flex items-center justify-center gap-2 bg-navy text-white text-center font-medium px-6 py-3 hover:bg-[#142c49] hover:shadow-lg hover:-translate-y-0.5 transition-all duration-300 border border-transparent hover:border-gold">
+                    <svg class="w-4 h-4 text-gold group-hover:scale-110 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"></path>
+                    </svg>
+                    <span>Schedule an Appointment</span>
                 </button>
             </div>
 
@@ -161,12 +186,17 @@
                     <p class="text-sm text-gray-600 leading-relaxed mb-6">
                         Appointment and ongoing administration of curatorships for individuals unable to manage their own financial or personal affairs. </p>
                 </div>
+                <!-- Updated Button -->
                 <button @click="openService(
                     'Curatorships', 
                     'Appointment and ongoing administration of curatorships for individuals unable to manage their own financial or personal affairs.', 
                     ['Medical or psychiatric reports supporting incapacity', 'ID documents of the patient and proposed curator', 'Any existing court application documents', 'List of the patient\'s assets and liabilities', 'Family details and next of kin']
-                )" class="w-full bg-navy text-white text-center font-medium px-6 py-2.5 hover:bg-gray-800 transition duration-300">
-                    Request Service
+                )" 
+                class="group w-full flex items-center justify-center gap-2 bg-navy text-white text-center font-medium px-6 py-3 hover:bg-[#142c49] hover:shadow-lg hover:-translate-y-0.5 transition-all duration-300 border border-transparent hover:border-gold">
+                    <svg class="w-4 h-4 text-gold group-hover:scale-110 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"></path>
+                    </svg>
+                    <span>Schedule an Appointment</span>
                 </button>
             </div>
 
@@ -183,12 +213,17 @@
                         Cross border insolvency advice, and acting as a foreign liquidator's agent in Namibia where an insolvent estate or company has assets, creditors or interests in Namibia.
                     </p>
                 </div>
+                <!-- Updated Button -->
                 <button @click="openService(
                     'Cross Border Insolvency', 
                     'Cross border insolvency advice, and acting as a foreign liquidator\'s agent in Namibia where an insolvent estate or company has assets, creditors or interests in Namibia.', 
                     ['Foreign court order or appointment of the liquidator or trustee', 'Certified proof of the foreign liquidator\'s identity and authority', 'Details of the insolvent estate or company and the foreign proceedings', 'Schedule of known assets and creditors in Namibia', 'Title deeds, registration papers or other proof of ownership of Namibian assets', 'Correspondence with creditors or authorities in Namibia']
-                )" class="w-full bg-navy text-white text-center font-medium px-6 py-2.5 hover:bg-gray-800 transition duration-300">
-                    Request Service
+                )" 
+                class="group w-full flex items-center justify-center gap-2 bg-navy text-white text-center font-medium px-6 py-3 hover:bg-[#142c49] hover:shadow-lg hover:-translate-y-0.5 transition-all duration-300 border border-transparent hover:border-gold">
+                    <svg class="w-4 h-4 text-gold group-hover:scale-110 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"></path>
+                    </svg>
+                    <span>Schedule an Appointment</span>
                 </button>
             </div>
         </div>
@@ -241,7 +276,7 @@
 
                     <!-- Bottom Section: The Form -->
                     <div class="border-t border-gray-300 pt-6">
-                        <h4 class="font-serif-custom text-xl text-navy mb-4">Request this service</h4>
+                        <h4 class="font-serif-custom text-xl text-navy mb-4">Schedule an Appointment</h4>
                         <!-- Form -->
                         <form action="{{ route('service.request') }}" method="POST" class="px-4 py-5 sm:p-6 space-y-4">
                             @csrf

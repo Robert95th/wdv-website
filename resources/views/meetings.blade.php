@@ -89,7 +89,7 @@
                     <span class="px-3 text-justify text-sm md:text-base text-gray-800 font-medium leading-relaxed">Estate / matter</span>
                 </div>
                 <div class="">
-                    <span class="px-3 text-justify text-sm md:text-base text-gray-800 font-medium leading-relaxed">Reference</span>
+                    <span class="px-3 text-justify text-sm md:text-base text-gray-800 font-medium leading-relaxed">Master's Number</span>
                 </div>
                 <div class="">
                     <span class="px-3 text-justify text-sm md:text-base text-gray-800 font-medium leading-relaxed"> Status</span>

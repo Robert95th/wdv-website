@@ -45,7 +45,7 @@
                         <span class="text-sm font-bold text-gray-800">Estate / matter</span>
                     </div>
                     <div class="px-3 py-3">
-                        <span class="text-sm font-bold text-gray-800">Reference</span>
+                        <span class="text-sm font-bold text-gray-800">Master's Number</span>
                     </div>
                     <div class="px-3 py-3">
                         <span class="text-sm font-bold text-gray-800">Status</span>
@@ -181,7 +181,7 @@
                                 <input type="text" name="estate_matter" x-model="formData.estate_matter" required class="w-full border-gray-300 rounded-sm shadow-sm focus:border-[#b8935a] focus:ring-[#b8935a] p-2.5 border">
                             </div>
                             <div>
-                                <label class="block text-sm font-medium text-gray-700 mb-1">Reference <span class="text-red-500">*</span></label>
+                                <label class="block text-sm font-medium text-gray-700 mb-1">Master's Number <span class="text-red-500">*</span></label>
                                 <input type="text" name="reference" x-model="formData.reference" required class="w-full border-gray-300 rounded-sm shadow-sm focus:border-[#b8935a] focus:ring-[#b8935a] p-2.5 border">
                             </div>
                         </div>

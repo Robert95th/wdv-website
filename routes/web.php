@@ -9,23 +9,60 @@ use App\Http\Controllers\MeetingController;
 use App\Http\Controllers\PropertyController;
 use App\Http\Controllers\Admin\MailingListController;
 use App\Http\Controllers\Auth\AuthenticatedSessionController;
+use App\Http\Controllers\DocumentController;
 use Illuminate\Support\Facades\Route;
+use Illuminate\Support\Facades\Response;
 
 // ==========================================
 // PUBLIC ROUTES
 // ==========================================
+
+Route::get('/sitemap.xml', function () {
+    $urls = [
+        url('/'),
+        url('/about'),
+        url('/services'),
+        url('/documents'),
+        url('/meetings'),
+        url('/archived'),
+        url('/properties'),
+    ];
+
+    $xml = '<?xml version="1.0" encoding="UTF-8"?>';
+    $xml .= '<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">';
+
+    foreach ($urls as $url) {
+        $xml .= '<url>';
+        $xml .= '<loc>' . $url . '</loc>';
+        $xml .= '<lastmod>' . date('Y-m-d') . '</lastmod>';
+        $xml .= '<changefreq>weekly</changefreq>';
+        $xml .= '<priority>0.8</priority>';
+        $xml .= '</url>';
+    }
+
+    $xml .= '</urlset>';
+
+    return Response::make($xml, 200)->header('Content-Type', 'application/xml');
+});
+
 Route::get('/', function () {
     return view('welcome');
 })->name('home');
+
 Route::get('/about', function () {
     return view('about');
 })->name('about');
+
 Route::get('/services', function () {
     return view('services');
 })->name('services');
+
 Route::get('/meetings', [EstateMatterController::class, 'index'])->name('meetings.index');
 Route::get('/archived', [EstateMatterController::class, 'archived'])->name('matters.archived');
 Route::get('/properties', [App\Http\Controllers\PropertyListingController::class, 'index'])->name('properties.index');
+
+// Public Documents
+Route::get('/documents', [DocumentController::class, 'index'])->name('documents.index');
 
 Route::post('/request-service', [ServiceRequestController::class, 'store'])->middleware('throttle:3,1')->name('service.request');
 Route::post('/subscribe', [SubscriberController::class, 'store'])->middleware('throttle:3,1')->name('newsletter.subscribe');
@@ -65,9 +102,17 @@ Route::middleware(['auth'])->prefix('cmp')->name('admin.')->group(function () {
     Route::post('properties', [PropertyController::class, 'store'])->name('properties.store');
     Route::put('properties/{property}', [PropertyController::class, 'update'])->name('properties.update');
     Route::delete('properties/{property}', [PropertyController::class, 'destroy'])->name('properties.destroy');
+    Route::delete('/properties/images/{image}', [App\Http\Controllers\PropertyController::class, 'destroyImage'])->name('properties.images.destroy');
+    // ==========================================
+    // ESTATE DOCUMENTS (Admin Routes Added Here)
+    // ==========================================
+    Route::get('/documents', [App\Http\Controllers\Admin\EstateDocumentController::class, 'index'])->name('documents.index');
+    Route::post('/documents', [App\Http\Controllers\Admin\EstateDocumentController::class, 'store'])->name('documents.store');
+    Route::put('/documents/{document}', [App\Http\Controllers\Admin\EstateDocumentController::class, 'update'])->name('documents.update');
+    Route::delete('/documents/{document}', [App\Http\Controllers\Admin\EstateDocumentController::class, 'destroy'])->name('documents.destroy');
+    // ==========================================
 
-    //mailing list 
-
+    // Mailing List 
     Route::get('/mailing-list', [MailingListController::class, 'index'])->name('mailing-list');
     Route::post('/mailing-list', [MailingListController::class, 'store'])->name('mailing-list.store');
     Route::patch('/mailing-list/{mailingList}/toggle', [MailingListController::class, 'toggle'])->name('mailing-list.toggle');

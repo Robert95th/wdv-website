@@ -7,8 +7,8 @@
     <meta name="csrf-token" content="{{ csrf_token() }}">
 
     <!-- Dynamic Page Title -->
-    <title>@yield('title', 'W.D.V. Schickerling')</title>
-
+    <title>@yield('title', 'W.D.V. Schickerling | Insolvency & Estate Practitioners Namibia')</title>
+    <meta name="description" content="@yield('meta_description', 'Registered Insolvency and Estate Practitioners in Namibia. Specializing in liquidations, sequestration, deceased estates, and trusteeship.')">
     <!-- Google Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -84,10 +84,13 @@
 
                 <!-- Logo & Brand (Flex row on mobile too, to save space) -->
                 <a href="/" class="flex flex-row items-center gap-4 text-left group">
-                    <img src="{{ asset('images/logo.png') }}" alt="W.D.V. Schickerling Logo" class="w-14 h-14 md:w-24 md:h-24 rounded-full border-2 border-gold bg-white object-cover shrink-0 group-hover:opacity-90 transition">
+                    <img src="{{ asset('images/logo.png') }}" alt="W.D.V. Schickerling Logo" class="w-48 h-48  rounded-full border-2 border-gold bg-white object-cover shrink-0 group-hover:opacity-90 transition">
                     <div>
+                        <h1 class="font-serif-custom text-center text-xl md:text-4xl text-gold tracking-widest leading-none">
+                            W.D.V.
+                        </h1>
                         <h1 class="font-serif-custom text-xl md:text-4xl text-gold tracking-widest leading-none">
-                            W.D.V.<br class="hidden md:block"> SCHICKERLING
+                            SCHICKERLING
                         </h1>
                         <p class="text-gold text-[8px] md:text-xs tracking-[0.2em] uppercase mt-1 md:mt-2 font-medium">
                             Insolvency & Estate Practitioners
@@ -102,8 +105,10 @@
                         <li><a href="/about" class="{{ request()->is('about') ? 'text-white' : 'hover:text-white' }} transition">About</a></li>
                         <li><a href="/services" class="{{ request()->is('services') ? 'text-white' : 'hover:text-white' }} transition">Services</a></li>
                         <li><a href="/meetings" class="{{ request()->is('meetings*') ? 'text-white' : 'hover:text-white' }} transition">Estate Meetings</a></li>
-                        <li><a href="/archived" class="{{ request()->is('archived*') ? 'text-white' : 'hover:text-white' }} transition">Archived Meetings</a></li>
-                        <li><a href="/properties" class="{{ request()->is('properties*') ? 'text-white' : 'hover:text-white' }} transition">Properties for Sale</a></li>
+
+                        <li><a href="/properties" class="{{ request()->is('properties*') ? 'text-white' : 'hover:text-white' }} transition">Property for Sale</a></li>
+                        <li><a href="/documents" class="{{ request()->is('documents*') ? 'text-white' : 'hover:text-white' }} transition">Estate Documents</a></li>
+                        <li><a href="/archived" class="{{ request()->is('archived*') ? 'text-white' : 'hover:text-white' }} transition">Archived Files</a></li>
                     </ul>
                 </nav>
 
@@ -134,8 +139,10 @@
                 <li><a href="/about" class="block px-4 py-3 rounded hover:bg-gray-800 hover:text-white transition">About</a></li>
                 <li><a href="/services" class="block px-4 py-3 rounded hover:bg-gray-800 hover:text-white transition">Services</a></li>
                 <li><a href="/meetings" class="block px-4 py-3 rounded hover:bg-gray-800 hover:text-white transition">Estate Meetings</a></li>
-                <li><a href="/archived" class="block px-4 py-3 rounded hover:bg-gray-800 hover:text-white transition">Archived Meetings</a></li>
-                <li><a href="/properties" class="block px-4 py-3 rounded hover:bg-gray-800 hover:text-white transition">Properties for Sale</a></li>
+
+                <li><a href="/properties" class="block px-4 py-3 rounded hover:bg-gray-800 hover:text-white transition">Property for Sale</a></li>
+                <li><a href="/documents" class="block px-4 py-3 rounded hover:bg-gray-800 hover:text-white transition">Estate Documents</a></li>
+                <li><a href="/archived" class="block px-4 py-3 rounded hover:bg-gray-800 hover:text-white transition">Archived Files</a></li>
             </ul>
         </div>
     </header>
@@ -163,70 +170,19 @@
                             <li><a href="/about" class="{{ request()->is('about') ? 'text-white' : 'hover:text-white' }} transition">About</a></li>
                             <li><a href="/services" class="{{ request()->is('services') ? 'text-white' : 'hover:text-white' }} transition">Services</a></li>
                             <li><a href="/meetings" class="{{ request()->is('meetings*') ? 'text-white' : 'hover:text-white' }} transition">Estate Meetings</a></li>
-                            <li><a href="/archived" class="{{ request()->is('archived*') ? 'text-white' : 'hover:text-white' }} transition">Archived Meetings</a></li>
-                            <li><a href="/properties" class="{{ request()->is('properties*') ? 'text-white' : 'hover:text-white' }} transition">Properties for Sale</a></li>
+
+                            <li><a href="/properties" class="{{ request()->is('properties*') ? 'text-white' : 'hover:text-white' }} transition">Property for Sale</a></li>
+                            <li><a href="/archived" class="{{ request()->is('archived*') ? 'text-white' : 'hover:text-white' }} transition">Archived Files</a></li>
                         </ul>
 
 
                     </div>
-                    <!-- Social Icons
-                    <div class="flex gap-4 mt-8">
-                        <a href="#" class="w-10 h-10 rounded-full border border-gray-500 flex items-center justify-center hover:border-gold hover:text-gold transition">
-                            <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 24 24">
-                                <path d="M22 12c0-5.523-4.477-10-10-10S2 6.477 2 12c0 4.991 3.657 9.128 8.438 9.878v-6.987h-2.54V12h2.54V9.797c0-2.506 1.492-3.89 3.777-3.89 1.094 0 2.238.195 2.238.195v2.46h-1.26c-1.243 0-1.63.771-1.63 1.562V12h2.773l-.443 2.89h-2.33v6.988C18.343 21.128 22 16.991 22 12z" />
-                            </svg>
-                        </a>
-                        <a href="#" class="w-10 h-10 rounded-full border border-gray-500 flex items-center justify-center hover:border-gold hover:text-gold transition">
-                            <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 24 24">
-                                <path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zM12 0C8.741 0 8.333.014 7.053.072 2.695.272.273 2.69.073 7.052.014 8.333 0 8.741 0 12c0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98C8.333 23.986 8.741 24 12 24c3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98C15.668.014 15.259 0 12 0zm0 5.838a6.162 6.162 0 100 12.324 6.162 6.162 0 000-12.324zM12 16a4 4 0 110-8 4 4 0 010 8zm6.406-11.845a1.44 1.44 0 100 2.881 1.44 1.44 0 000-2.881z" />
-                            </svg>
-                        </a>
-                    </div> -->
+
                 </div>
 
                 <!-- Column 2: Newsletter Form -->
-                <div class="text-center px-4">
-                    <h3 class="font-serif-custom text-3xl text-gold mb-2">Get Updates</h3>
-                    <p class="text-sm text-gray-400 italic mb-6">Subscribe to our newsletter to receive updates and special announcements.</p>
+                <div class="text-left px-4">
 
-                    <!-- Success / Error Messages -->
-                    @if(session('success'))
-                    <div class="bg-green-900/50 border border-green-500 text-green-200 px-4 py-2 rounded text-sm mb-4">
-                        {{ session('success') }}
-                    </div>
-                    @endif
-
-                    <form action="{{ route('newsletter.subscribe') }}" method="POST" class="space-y-3">
-                        @csrf
-
-                        <!-- Honeypot Field (Hidden from users) -->
-                        <div class="hidden" aria-hidden="true">
-                            <input type="text" name="website_url" tabindex="-1" autocomplete="off">
-                        </div>
-
-                        <div>
-                            <input type="email" name="email" value="{{ old('email') }}" placeholder="*Email" required class="w-full bg-transparent border border-gray-500 p-3 text-sm text-white placeholder-gray-400 focus:outline-none focus:border-gold transition">
-                            @error('email')
-                            <span class="text-red-400 text-xs text-left block mt-1">{{ $message }}</span>
-                            @enderror
-                        </div>
-
-                        <div class="flex flex-col sm:flex-row gap-3">
-                            <div class="w-full">
-                                <input type="text" name="first_name" value="{{ old('first_name') }}" placeholder="*First Name" required class="w-full bg-transparent border border-gray-500 p-3 text-sm text-white placeholder-gray-400 focus:outline-none focus:border-gold transition">
-                                @error('first_name')
-                                <span class="text-red-400 text-xs text-left block mt-1">{{ $message }}</span>
-                                @enderror
-                            </div>
-                            <button type="submit" class="bg-white text-navy font-bold text-sm px-6 py-3 hover:bg-gray-200 transition whitespace-nowrap h-[46px]">
-                                SIGN UP
-                            </button>
-                        </div>
-                    </form>
-                </div>
-
-                <!-- Column 3: Contact Details -->
-                <div class="flex flex-col md:border-l border-gray-700 md:pl-8 text-center md:text-left">
                     <!-- Action Button -->
                     <a href="mailto:wiam@iande.co" class="inline-flex items-center justify-center md:justify-start text-lg font-medium text-white hover:text-[#b8935a] mb-8 transition group">
                         Send Us A Message
@@ -269,6 +225,32 @@
                         </div>
 
                     </div>
+
+
+
+                </div>
+
+                <!-- Column 3: Contact Details -->
+                <div class="flex flex-col  md:border-l border-gray-700 md:pl-8  md:text-left    items-center justify-center text-center w-full md:w-auto p-4">
+                    <a href="/" class="flex flex-col items-center group">
+                        <!-- Logo Image -->
+                        <img src="{{ asset('images/logo.png') }}"
+                            alt="W.D.V. Schickerling Logo"
+                            class="w-48 h-48 rounded-full border-2 border-gold bg-white object-cover shrink-0 group-hover:opacity-90 transition">
+
+                        <!-- Text Container -->
+                        <div class="mt-4 flex flex-col items-center">
+                            <h1 class="font-serif-custom text-xl md:text-4xl text-gold tracking-widest leading-none text-center">
+                                W.D.V.
+                            </h1>
+                            <h1 class="font-serif-custom text-xl md:text-4xl text-gold tracking-widest leading-none text-center mt-1">
+                                SCHICKERLING
+                            </h1>
+                            <p class="text-gold text-[8px] md:text-xs tracking-[0.2em] uppercase mt-2 md:mt-3 font-medium text-center">
+                                Insolvency & Estate Practitioners
+                            </p>
+                        </div>
+                    </a>
                 </div>
 
             </div>
@@ -283,7 +265,26 @@
             </div>
         </div>
     </footer>
-
+    @verbatim
+    <script type="application/ld+json">
+        {
+            "@context": "https://schema.org",
+            "@type": "LegalService",
+            "name": "W.D.V. Schickerling",
+            "description": "Registered Insolvency and Estate Practitioner rendering professional services across Namibia in liquidations, sequestration, and deceased estates.",
+            "url": "{{ url('/') }}",
+            "telephone": "+264811442959",
+            "address": {
+                "@type": "PostalAddress",
+                "streetAddress": "Unit 402, Fourth Floor, Maerua Mall",
+                "addressLocality": "Windhoek",
+                "addressCountry": "NA"
+            },
+            "areaServed": "Namibia",
+            "knowsAbout": ["Insolvency", "Liquidation", "Trustee", "Receiver", "Estate Administration"]
+        }
+    </script>
+    @endverbatim
 </body>
 
 </html>

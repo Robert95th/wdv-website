@@ -1,7 +1,8 @@
 @extends('layouts.app')
 
-@section('title', 'Welcome - W.D.V. Schickerling')
 
+@section('title', 'Insolvency Practitioner & Liquidator | W.D.V. Schickerling')
+@section('meta_description', 'Looking for an insolvency practitioner or liquidator in Namibia? Wiam Schickerling provides expert estate administration, trusteeship, and receivership services.')
 @section('content')
 <!-- Hero Section -->
 <section class="bg-cream">

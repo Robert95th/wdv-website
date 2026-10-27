@@ -5,6 +5,7 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Facades\Storage;
+
 class PropertyListing extends Model
 {
     use HasFactory;
@@ -20,4 +21,8 @@ class PropertyListing extends Model
         'view_status',
         'document_path'
     ];
+    public function images()
+    {
+        return $this->hasMany(PropertyImage::class);
+    }
 }

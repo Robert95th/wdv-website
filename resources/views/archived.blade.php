@@ -60,8 +60,8 @@
         <!-- Header and Search Bar -->
         <div class="mb-8 flex flex-col md:flex-row md:items-end justify-between gap-4">
             <div>
-                <h3 class="text-3xl font-serif-custom text-navy mb-2">Archived Meetings</h3>
-                <p class="text-gray-700">Stay informed about the Archived meetings and events related to estate matters.</p>
+                <h3 class="text-3xl font-serif-custom text-navy mb-2">Archived Files</h3>
+                <p class="text-gray-700">Stay informed about the Archived files and events related to estate matters.</p>
             </div>
 
             <!-- Search Input -->
@@ -86,7 +86,7 @@
                     <span class="px-3 text-justify text-sm md:text-base text-gray-800 font-medium leading-relaxed">Estate / matter</span>
                 </div>
                 <div class="">
-                    <span class="px-3 text-justify text-sm md:text-base text-gray-800 font-medium leading-relaxed">Reference</span>
+                    <span class="px-3 text-justify text-sm md:text-base text-gray-800 font-medium leading-relaxed">Master's Number</span>
                 </div>
                 <div class="">
                     <span class="px-3 text-justify text-sm md:text-base text-gray-800 font-medium leading-relaxed"> Status</span>

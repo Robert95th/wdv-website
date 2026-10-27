@@ -1,0 +1,38 @@
+
+                    <h3 class="font-serif-custom text-3xl text-gold mb-2">Get Updates</h3>
+                    <p class="text-sm text-gray-400 italic mb-6">Subscribe to our Site important announcements, changes to services, notices, or other general updates.</p>
+
+                    <!-- Success / Error Messages -->
+                    @if(session('success'))
+                    <div class="bg-green-900/50 border border-green-500 text-green-200 px-4 py-2 rounded text-sm mb-4">
+                        {{ session('success') }}
+                    </div>
+                    @endif
+
+                    <form action="{{ route('newsletter.subscribe') }}" method="POST" class="space-y-3">
+                        @csrf
+
+                        <!-- Honeypot Field (Hidden from users) -->
+                        <div class="hidden" aria-hidden="true">
+                            <input type="text" name="website_url" tabindex="-1" autocomplete="off">
+                        </div>
+
+                        <div>
+                            <input type="email" name="email" value="{{ old('email') }}" placeholder="*Email" required class="w-full bg-transparent border border-gray-500 p-3 text-sm text-white placeholder-gray-400 focus:outline-none focus:border-gold transition">
+                            @error('email')
+                            <span class="text-red-400 text-xs text-left block mt-1">{{ $message }}</span>
+                            @enderror
+                        </div>
+
+                        <div class="flex flex-col sm:flex-row gap-3">
+                            <div class="w-full">
+                                <input type="text" name="first_name" value="{{ old('first_name') }}" placeholder="*First Name" required class="w-full bg-transparent border border-gray-500 p-3 text-sm text-white placeholder-gray-400 focus:outline-none focus:border-gold transition">
+                                @error('first_name')
+                                <span class="text-red-400 text-xs text-left block mt-1">{{ $message }}</span>
+                                @enderror
+                            </div>
+                            <button type="submit" class="bg-white text-navy font-bold text-sm px-6 py-3 hover:bg-gray-200 transition whitespace-nowrap h-[46px]">
+                                SIGN UP
+                            </button>
+                        </div>
+                    </form>

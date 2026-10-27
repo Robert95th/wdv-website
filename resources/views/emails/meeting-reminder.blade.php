@@ -23,7 +23,7 @@
             
             <div class="details">
                 <p><strong>Estate:</strong> {{ $meeting->estate_matter }}</p>
-                <p><strong>Reference:</strong> {{ $meeting->reference }}</p>
+                <p><strong>Master's Number:</strong> {{ $meeting->reference }}</p>
                 <p><strong>Date & Venue:</strong> {{ $meeting->date_and_venue }}</p>
                 <p><strong>Next Action:</strong> {{ $meeting->next_action }}</p>
             </div>

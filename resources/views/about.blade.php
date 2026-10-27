@@ -1,7 +1,7 @@
 @extends('layouts.app')
 
-@section('title', 'About Us - W.D.V. Schickerling')
-
+@section('title', 'Insolvency Practitioner & Liquidator | W.D.V. Schickerling')
+@section('meta_description', 'Looking for an insolvency practitioner or liquidator in Namibia? Wiam Schickerling provides expert estate administration, trusteeship, and receivership services.')
 @section('content')
         <section class="relative overflow-hidden h-[600px] md:h-[700px] lg:h-[800px]">
             <!-- 1. Blurry Background Layer -->

@@ -54,27 +54,36 @@
         activeFilter: 'All',
         searchTerm: '',
         listings: {{ Js::from($listings) }},
+        
+        // Lightbox Modal State
+        galleryOpen: false,
+        currentImages: [],
+        currentIndex: 0,
+        currentTitle: '',
+
+        openGallery(listing) {
+            // If a property has no images, we shouldn't open the modal
+            if (!listing.all_images || listing.all_images.length === 0) return;
+            
+            this.currentImages = listing.all_images;
+            this.currentTitle = listing.title;
+            this.currentIndex = 0;
+            this.galleryOpen = true;
+        },
+        nextImage() {
+            if (this.currentIndex < this.currentImages.length - 1) this.currentIndex++;
+        },
+        prevImage() {
+            if (this.currentIndex > 0) this.currentIndex--;
+        },
     
         get filteredListings() {
             const term = this.searchTerm.trim().toLowerCase();
     
             return this.listings.filter(item => {
-                const matchesCategory =
-                    this.activeFilter === 'All' ||
-                    item.category === this.activeFilter;
-    
-                const searchableText = [
-                    item.title,
-                    item.description,
-                    item.category,
-                    item.auctioneer,
-                    item.venue,
-                    item.date_and_time
-                ].filter(Boolean).join(' ').toLowerCase();
-    
-                const matchesSearch =
-                    term === '' || searchableText.includes(term);
-    
+                const matchesCategory = this.activeFilter === 'All' || item.category === this.activeFilter;
+                const searchableText = [item.title, item.description, item.category, item.auctioneer, item.venue, item.date_and_time].filter(Boolean).join(' ').toLowerCase();
+                const matchesSearch = term === '' || searchableText.includes(term);
                 return matchesCategory && matchesSearch;
             });
         }
@@ -166,7 +175,9 @@
             <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5 md:gap-6" aria-live="polite" aria-atomic="false">
 
                 <template x-for="listing in filteredListings" :key="listing.id">
-                    <article class="group bg-white rounded-xl overflow-hidden border border-gray-200 shadow-sm hover:shadow-xl md:hover:-translate-y-1 transition-all duration-300 flex flex-col">
+                    
+                    <!-- Changed to a clickable div to trigger the modal -->
+                    <article @click="openGallery(listing)" class="group cursor-pointer bg-white rounded-xl overflow-hidden border border-gray-200 shadow-sm hover:shadow-xl md:hover:-translate-y-1 transition-all duration-300 flex flex-col">
 
                         {{-- Image --}}
                         <div class="relative h-48 md:h-56 overflow-hidden bg-[#0a192f]">
@@ -194,6 +205,14 @@
                             {{-- Category badge --}}
                             <div class="absolute top-2 left-2 md:top-3 md:left-3">
                                 <span class="inline-flex items-center px-2.5 py-1 md:px-3 md:py-1.5 rounded-md bg-[#0a192f]/90 text-white text-[9px] md:text-[10px] font-bold uppercase tracking-wider border border-white/15 backdrop-blur-sm" x-text="listing.category"></span>
+                            </div>
+
+                            {{-- Photo Count Badge --}}
+                            <div class="absolute bottom-2 right-2 md:bottom-3 md:right-3" x-show="listing.all_images && listing.all_images.length > 0">
+                                <span class="inline-flex items-center gap-1 px-2 py-1 rounded bg-black/70 text-white text-xs font-medium backdrop-blur-sm">
+                                    <svg class="w-3 h-3" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z"></path></svg>
+                                    <span x-text="listing.all_images.length"></span>
+                                </span>
                             </div>
                         </div>
 
@@ -281,6 +300,53 @@
             </div>
 
         </div>
+
+        {{-- ========================================== --}}
+        {{-- LIGHTBOX GALLERY MODAL --}}
+        {{-- ========================================== --}}
+        <div x-show="galleryOpen" x-cloak class="fixed inset-0 z-[100] flex items-center justify-center bg-black/95 backdrop-blur-md" 
+             @keydown.escape.window="galleryOpen = false" 
+             @keydown.right.window="nextImage()" 
+             @keydown.left.window="prevImage()">
+            
+            <!-- Close Button -->
+            <button @click="galleryOpen = false" class="absolute top-4 right-4 md:top-8 md:right-8 text-white/70 hover:text-white bg-white/10 hover:bg-white/20 p-2 md:p-3 rounded-full transition z-50">
+                <svg class="w-6 h-6 md:w-8 md:h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path></svg>
+            </button>
+
+            <!-- Title & Counter -->
+            <div class="absolute top-4 left-4 md:top-8 md:left-8 z-50 bg-black/60 px-4 py-2 rounded-lg pointer-events-none">
+                <h3 class="text-white font-serif-custom text-lg md:text-xl truncate max-w-[200px] md:max-w-md" x-text="currentTitle"></h3>
+                <p class="text-gray-400 text-sm mt-1">
+                    Image <span x-text="currentIndex + 1"></span> of <span x-text="currentImages.length"></span>
+                </p>
+            </div>
+
+            <!-- Previous Button -->
+            <button @click.stop="prevImage()" x-show="currentIndex > 0" class="absolute left-2 md:left-8 top-1/2 -translate-y-1/2 text-white/50 hover:text-white bg-black/50 hover:bg-black/80 p-3 md:p-4 rounded-full transition z-50">
+                <svg class="w-6 h-6 md:w-10 md:h-10" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7"></path></svg>
+            </button>
+
+            <!-- Main Image Container (Clicking background closes) -->
+            <div class="w-full h-full flex items-center justify-center p-4 md:p-16" @click="galleryOpen = false">
+                <img :src="currentImages[currentIndex]" class="max-w-full max-h-full object-contain shadow-2xl rounded-md" @click.stop>
+            </div>
+
+            <!-- Next Button -->
+            <button @click.stop="nextImage()" x-show="currentIndex < currentImages.length - 1" class="absolute right-2 md:right-8 top-1/2 -translate-y-1/2 text-white/50 hover:text-white bg-black/50 hover:bg-black/80 p-3 md:p-4 rounded-full transition z-50">
+                <svg class="w-6 h-6 md:w-10 md:h-10" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path></svg>
+            </button>
+
+            <!-- Thumbnail Strip (Desktop only) -->
+            <div class="absolute bottom-4 left-1/2 -translate-x-1/2 hidden md:flex gap-2 z-50 bg-black/60 p-2 rounded-lg max-w-4xl overflow-x-auto" x-show="currentImages.length > 1">
+                <template x-for="(img, index) in currentImages" :key="index">
+                    <button @click.stop="currentIndex = index" class="shrink-0 w-16 h-12 rounded overflow-hidden border-2 transition" :class="currentIndex === index ? 'border-[#b8935a]' : 'border-transparent opacity-50 hover:opacity-100'">
+                        <img :src="img" class="w-full h-full object-cover">
+                    </button>
+                </template>
+            </div>
+        </div>
+
     </section>
 
 @endsection

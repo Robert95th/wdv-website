@@ -35,7 +35,7 @@
 
         <div>
             <h2 class="font-serif-custom text-2xl text-navy mb-4">4. Meetings and Estate Listings</h2>
-            <p>The dates, venues, and statuses listed on our "Estate Meetings" and "Properties for Sale" pages are provided for informational purposes. While we strive to keep this information updated, meeting dates may be subject to change by the Master's Office. We advise you to contact our office directly to confirm the current status of any estate or auction before making travel arrangements.</p>
+            <p>The dates, venues, and statuses listed on our "Events and Actions" and "Properties for Sale" pages are provided for informational purposes. While we strive to keep this information updated, meeting dates may be subject to change by the Master's Office. We advise you to contact our office directly to confirm the current status of any estate or auction before making travel arrangements.</p>
         </div>
 
         <div>

@@ -14,10 +14,10 @@
     <div class="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16 w-full">
         <div class="bg-cream max-w-3xl p-8 md:p-12 shadow-2xl border-t-4 border-gold">
             <h2 class="font-serif-custom text-4xl md:text-5xl text-navy leading-tight mb-6">
-                Meetings for Estate Matters
+                Important Events and Actions in Active Files
             </h2>
             <p class="text-gray-700 text-lg md:text-xl leading-relaxed">
-                Current status of estates under our administration, and the dates, venues and nature of meetings and other actions relevant to each. </p>
+                Current status of, the dates, venues and nature of meetings and other actions relevant to active files under our administration. </p>
         </div>
     </div>
 </section>
@@ -60,8 +60,9 @@
         <!-- Header and Search Bar -->
         <div class="mb-8 flex flex-col md:flex-row md:items-end justify-between gap-4">
             <div>
-                <h3 class="text-3xl font-serif-custom text-navy mb-2">Upcoming Meetings</h3>
-                <p class="text-gray-700">Stay informed about the latest meetings and events related to estate matters.</p>
+                <h3 class="text-3xl font-serif-custom text-navy mb-2">Upcoming Events and Actions</h3>
+                <p class="text-gray-700">Stay informed about the latest meetings,<br> actions and events related to matters
+                    under our administration.</p>
             </div>
 
             <!-- Search Input -->
@@ -86,10 +87,10 @@
         <div class="overflow-x-auto">
             <div class="grid grid-cols-1 md:grid-cols-5 border-b-[3px] border-[#b8935a] mb-5 font-bold text-sm md:text-base text-gray-800">
                 <div class="">
-                    <span class="px-3 text-justify text-sm md:text-base text-gray-800 font-medium leading-relaxed">Estate / matter</span>
+                    <span class="px-3 text-justify text-sm md:text-base text-gray-800 font-medium leading-relaxed">Name</span>
                 </div>
                 <div class="">
-                    <span class="px-3 text-justify text-sm md:text-base text-gray-800 font-medium leading-relaxed">Master's Number</span>
+                    <span class="px-3 text-justify text-sm md:text-base text-gray-800 font-medium leading-relaxed">Reference Number</span>
                 </div>
                 <div class="">
                     <span class="px-3 text-justify text-sm md:text-base text-gray-800 font-medium leading-relaxed"> Status</span>
@@ -191,7 +192,9 @@
                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path>
             </svg>
             <p>
-                Not all estates appear in this list — for the current status of an estate not listed, please contact our office directly.
+              Not all matters
+appear in this list — for the current status of a file not listed, please contact our
+office directly.
             </p>
         </div>
 

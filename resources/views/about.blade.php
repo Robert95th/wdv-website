@@ -27,9 +27,9 @@
                 </div>
             </div>
 
-            <div class="w-full bg-white lg:w-1/2 h-48 lg:h-auto lg:absolute lg:right-0 lg:top-0 lg:bottom-0 overflow-hidden display-none md:block border-8 border-[#11294e] shadow-lg shadow-[#11294e]">
+            <div class="w-full bg-cream lg:w-1/2 h-48 lg:h-auto lg:absolute lg:right-0 lg:top-0 lg:bottom-0 overflow-hidden display-none md:block ">
 
-                <img src="{{ asset('images/logo2.png') }}" alt="Office Building" class="w-full h-full object-cover">
+                <img src="{{ asset('images/logo2em.png') }}" alt="Office Building" class="md:w-full md:h-full object-cover h-52 mx-auto ">
             </div>
         </div>
     </div>

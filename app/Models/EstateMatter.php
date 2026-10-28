@@ -26,4 +26,8 @@ class EstateMatter extends Model
         'expiry_date' => 'date',
         'view_status' => 'boolean',
     ];
+    public function documents()
+    {
+        return $this->hasMany(EstateDocument::class, 'estate_matter_id');
+    }
 }

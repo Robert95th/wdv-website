@@ -13,10 +13,10 @@
     <div class="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16 w-full">
         <div class="bg-cream max-w-3xl p-8 md:p-12 shadow-2xl border-t-4 border-gold">
             <h2 class="font-serif-custom text-4xl md:text-5xl text-navy leading-tight mb-6">
-                Public Documents & Resources
+                Active Files under our Administration 
             </h2>
             <p class="text-gray-700 text-lg md:text-xl leading-relaxed">
-                Access official forms, notices, and legal documents related to insolvency and estate administration.
+               Access important public documents and information related to active files under our administration.
             </p>
         </div>
     </div>
@@ -73,8 +73,8 @@
         <!-- Header and Search Bar -->
         <div class="mb-8 flex flex-col md:flex-row md:items-end justify-between gap-4">
             <div>
-                <h3 class="text-3xl font-serif-custom text-navy mb-2">Available Documents</h3>
-                <p class="text-gray-700">Download the required forms or review public notices.</p>
+                <h3 class="text-3xl font-serif-custom text-navy mb-2">Available Files</h3>
+                <p class="text-gray-700">View, download or print public documents and information. .</p>
             </div>
 
             <!-- Search Input -->
@@ -87,7 +87,7 @@
                 <input
                     type="text"
                     x-on:input="updateSearch($event.target.value)"
-                    placeholder="Search documents..."
+                    placeholder="Search files..."
                     class="block w-full pl-10 pr-3 py-2.5 border border-gray-300 rounded-sm leading-5 bg-white placeholder-gray-500 focus:outline-none focus:placeholder-gray-400 focus:border-[#b8935a] focus:ring-1 focus:ring-[#b8935a] sm:text-sm transition">
             </div>
         </div>
@@ -141,7 +141,7 @@
 
             <!-- Empty State -->
             <div x-show="filteredDocuments.length === 0" class="text-center py-10 text-gray-500 italic">
-                No documents found matching your search.
+                No files found matching your search.
             </div>
         </div>
 
